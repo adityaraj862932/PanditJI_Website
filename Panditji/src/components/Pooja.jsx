@@ -13,23 +13,24 @@ const pujas = [
 
 const Pooja = () => {
   return (
-    <div className="h-[88vh] text-white text-center p-6">
+    <div className="h-[88vh] text-white text-center p-6 bg-orange-100">
       <h1 className="text-3xl font-bold text-orange-400">Book Pandit Ji for All Types of Puja</h1>
-      <p className="mt-2 text-black text-2xl">We provide all types of puja services at your home or nearby locations</p>
+      <p className="mt-2 text-black text-1xl md:text-2xl">We provide all types of puja services at your home or nearby locations</p>
       
-      <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 justify-center">
+      <div className="mt-6 md:mt-20 grid grid-cols-3 md:grid-cols-4 gap-6 justify-center">
         {pujas.map((puja, index) => (
           <div key={index} className="text-center">
             <img
               src={puja.image}
               alt={puja.name}
-              className="w-24 h-24 mx-auto rounded-full border-2 border-white"
+              className="w-16 md:w-24 h-16 md:h-24 mx-auto rounded-full border-2 border-white"
             />
             <p className="mt-2 text-lg text-orange-400 font-semibold">{puja.name}</p>
           </div>
         ))}
       </div>
       <button className="px-10 py-3 bg-orange-400 mt-14">Book Now</button>
+      <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto"></div>
     </div>
   );
 };

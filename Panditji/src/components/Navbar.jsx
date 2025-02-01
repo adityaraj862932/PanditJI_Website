@@ -1,19 +1,35 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { FaAngleDown, FaBars } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router-dom";
+import { RxCross2 } from "react-icons/rx";
 
 function Navbar() {
+
+  const navigate = useNavigate()
+  function handleclick(){
+    navigate('/contact')
+  }
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    const script = document.createElement("script");
+    script.src =
+      "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
     script.async = true;
     document.body.appendChild(script);
-    
+
     window.googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'hi',
-        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "hi",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        },
+        "google_translate_element"
+      );
     };
     return () => {
       document.body.removeChild(script);
@@ -21,41 +37,54 @@ function Navbar() {
   }, []);
 
   return (
-    <div className='w-full h-[12vh] bg-orange-400 text-white flex items-center justify-between p-5'>
-        <img src="https://vaikunth.co/front_assets/image/logo/logo-black.svg" alt="" className='h-[3vw] filter invert'/>
-        
-        {/* Navbar Links */}
-        <div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20">
-          <Link
-            to="/"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Home
-          </Link>
-          <Link
-            to="/pooja"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Pooja
-          </Link>
-          <Link
-            to="/about"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            About
-          </Link>
-          <Link
-            to="/contact"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Contact
-          </Link>
+    <div className="w-full h-[12vh] bg-orange-400 text-white flex items-center justify-between p-5">
+      <img
+        src="https://vaikunth.co/front_assets/image/logo/logo-black.svg"
+        alt=""
+        className="h-[8vw] md:h-[3vw] filter invert"
+      />
 
-          <div id="google_translate_element" className="ml-5 "></div>
+<div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex">
+<Link to="/">Home</Link>
+        <a href="#pooja">Pooja</a>
+        <a href="#about">About</a>
+        <button onClick={handleclick}>Contact</button>
+  
+</div>
+
+
+      <div className="md:hidden flex items-center">
+        <button onClick={toggleMenu}>
+          {menuOpen ? (
+            <RxCross2 className="text-[5vw] absolute right-12 top-5 sm:hidden text-4xl" />
+          ) : (
+            <FaBars className="text-[5vw] absolute right-12 top-5 sm:hidden text-4xl" />
+          )}
+        </button>
+      </div>
+
+      {menuOpen && (
+        <div className="md:hidden absolute z-10 top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-[8vh] gap-4 text-2xl">
+           <Link to="/">Home</Link>
+        <a href="#pooja">Pooja</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
         </div>
-
+      )}
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
+
+
+
+{/* <div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20">
+        <Link to="/">Home</Link>
+        <a href="#pooja">Pooja</a>
+        <a href="#about">About</a>
+         <Link to="/contact">Contact</Link>
+        <div className="">
+          <div id="google_translate_element" className=""></div>
+        </div>
+      </div> */}

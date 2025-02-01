@@ -6,18 +6,26 @@ import Contact from './components/Contact';
 import Pooja from './components/Pooja';
 import About from './components/About';
 import Footer from './components/Footer';
+import Page2 from './components/Page2';
 
 function App() {
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen bg-orange-100">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path='/pooja' element={<Pooja />} />
-        <Route path='/about' element={<About />} />
+        <Route path="/" element={<Hero />}></Route>
       </Routes>
-      < Footer/>
+      <div id="pooja">
+      <Pooja />
+      </div>
+      <div id="about">
+      <About />
+      </div>
+      <div id="contact">
+      <Contact />
+      </div>
+
+      <Footer />
     </div>
   );
 }

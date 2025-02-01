@@ -12,7 +12,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-orange-400 pt-8 pb-6 relative">
+    <footer className="bg-orange-400 h-screen md:h-96 pt-8 pb-6 relative">  
       <div className="container mx-auto px-4">
         {/* Main Section */}
         <div className="flex flex-wrap text-left lg:text-left">
