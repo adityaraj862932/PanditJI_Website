@@ -48,8 +48,7 @@ function Navbar() {
 <Link to="/">Home</Link>
         <a href="#pooja">Pooja</a>
         <a href="#about">About</a>
-        <button onClick={handleclick}>Contact</button>
-  
+        <a href="#contact">Contact</a>
 </div>
 
 
