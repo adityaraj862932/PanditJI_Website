@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes } from 'react-router-dom';
+import emailjs from "@emailjs/browser";
 
 function Contact() {
 
@@ -19,9 +20,21 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // For now, just log the form data
-    console.log(formData);
-    // You can later handle form submission, like sending data to a server
+
+    emailjs
+    .send(
+      "service_vd30p55",   // Service ID
+      "template_l18mk23",  // Template ID
+      formData,
+      "dNitFNznAdxcfQnUV"
+    )
+    .then((response)=>{
+      alert('Email sent');
+    })
+    .catch((error)=>{
+      alert("failed to send email. ")
+      console.error(error);
+    })
   };
 
   return (
@@ -60,14 +73,14 @@ function Contact() {
             />
           </div>
           <div className="mb-4">
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="Number" className="block text-sm font-medium text-gray-700">
               Number
             </label>
             <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              type="numeric"
+              id="Number"
+              name="Number"
+              value={formData.Number}
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your Email"
