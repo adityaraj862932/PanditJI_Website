@@ -38,7 +38,7 @@ function Contact() {
   };
 
   return (
-    <div className="w-full h-[88vh] flex items-center justify-center bg-gray-100 py-8">
+    <div className="w-full h-[102vh] flex items-center justify-center bg-gray-100 py-8">
       <div className="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Contact Us</h2>
         <form onSubmit={handleSubmit}>

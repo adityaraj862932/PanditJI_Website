@@ -2,7 +2,7 @@ import React from 'react'
 
 function About() {
   return (
-    <div className='w-full h-[88vh] flex justify-between bg-orange-100'>
+    <div className='w-full h-[100vh] flex justify-between bg-orange-100'>
         <div className="left w-[50vw] md:w-[40vw] h-[88vh] md:ml-5 hidden md:block">
             <img src="https://vaikunth.co/front_assets/image/home-page-image/orange_chakker.png" alt="" className='h-[80vh] mt-6' />
         </div>

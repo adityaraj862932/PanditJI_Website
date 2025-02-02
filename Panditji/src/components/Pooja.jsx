@@ -13,7 +13,7 @@ const pujas = [
 
 const Pooja = () => {
   return (
-    <div className="h-[88vh] text-white text-center p-6 bg-orange-100">
+    <div className="h-[100vh] text-white text-center p-6 bg-orange-100">
       <h1 className="text-3xl font-bold text-orange-400">Book Pandit Ji for All Types of Puja</h1>
       <p className="mt-2 text-black text-1xl md:text-2xl">We provide all types of puja services at your home or nearby locations</p>
       
@@ -29,8 +29,9 @@ const Pooja = () => {
           </div>
         ))}
       </div>
-      <button className="px-10 py-3 bg-orange-400 mt-14">Book Now</button>
       <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto"></div>
+      <button className="px-10 py-3 bg-orange-400 mt-14">Book Now</button>
+      
     </div>
   );
 };
