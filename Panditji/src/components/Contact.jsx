@@ -85,11 +85,11 @@ function Contact() {
 
         <div className="w-1/2 h-full">
         <div className="w-full h-full flex items-center justify-center py-8">
-              <div className="w-full max-w-lg bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Contact Pandit Ji</h2>
+              <div className="w-full max-w-lg bg-orange-400 p-8 rounded-lg shadow-lg">
+                <h2 className="text-3xl font-bold text-center text-white mb-6">Contact Pandit Ji</h2>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-4">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="name" className="block text-sm font-medium text-white">
                       Name
                     </label>
                     <input
@@ -104,7 +104,7 @@ function Contact() {
                     />
                   </div>
                   <div className="mb-4">
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="email" className="block text-sm font-medium text-white">
                       Email
                     </label>
                     <input
@@ -119,7 +119,7 @@ function Contact() {
                     />
                   </div>
                   <div className="mb-4">
-                  <label htmlFor="Number" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="Number" className="block text-sm font-medium text-white">
                       Number
                     </label>
                     <input
@@ -132,7 +132,7 @@ function Contact() {
                       placeholder="Your Email"
                       required
                     />
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="message" className="block text-sm font-medium text-white">
                       Message
                     </label>
                     <textarea
@@ -147,7 +147,7 @@ function Contact() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-2 bg-orange-500 text-white font-semibold rounded-md shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                    className="w-full py-2 bg-green-500 text-white font-semibold rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                   >
                     Send Message
                   </button>
