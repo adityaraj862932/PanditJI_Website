@@ -10,6 +10,7 @@ function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    Number:'',
     message: '',
   });
 
@@ -33,6 +34,14 @@ function Contact() {
     )
     .then((response)=>{
       alert('Email sent');
+    })
+    .then((response) => {
+      setFormData({
+        name: '',
+        email: '',
+        Number:'',
+        message: ''
+      });
     })
     .catch((error)=>{
       alert("failed to send email. ")
@@ -129,7 +138,7 @@ function Contact() {
                       value={formData.Number}
                       onChange={handleChange}
                       className="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Your Email"
+                      placeholder="Your Contact Number"
                       required
                     />
                     <label htmlFor="message" className="block text-sm font-medium text-gray-700">

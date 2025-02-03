@@ -44,7 +44,7 @@ function Navbar() {
         className="h-[8vw] md:h-[3vw] filter invert"
       />
 
-<div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex">
+<div className="optn  items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex">
 <Link to="/">Home</Link>
         <a href="#pooja">Pooja</a>
         <a href="#about">About</a>
