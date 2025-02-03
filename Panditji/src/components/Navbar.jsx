@@ -1,69 +1,89 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { FaAngleDown, FaBars } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router-dom";
+import { RxCross2 } from "react-icons/rx";
 
-const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+function Navbar() {
 
-  const toggleMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const navigate = useNavigate()
+  function handleclick(){
+    navigate('/contact')
+  }
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src =
+      "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+    script.async = true;
+    document.body.appendChild(script);
+
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: "en",
+          includedLanguages: "hi",
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+        },
+        "google_translate_element"
+      );
+    };
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
-    <div>
-      <div className="h-16 w-100% bg-orange-400 flex justify-between items-center px-4">
-        <div>
-          <img
-            src="https://vaikunth.co/front_assets/image/logo/logo-black.svg"
-            alt="Logo"
-            className="text-white h-10 w-auto filter invert mt-4 mb-4"
-          />
-        </div>
+    <div className="w-full h-[12vh] bg-orange-400 text-white flex items-center justify-between p-5">
+      <img
+        src="https://vaikunth.co/front_assets/image/logo/logo-black.svg"
+        alt=""
+        className="h-[8vw] md:h-[3vw] filter invert"
+      />
 
-        <div className="hidden md:flex w-[50%] justify-evenly items-center font-semibold text-xl text-white">
-          <Link to="/">Home</Link>
-          <Link to="/Pooja">Pooja</Link>
-          <Link to="/About">About</Link>
-          <Link to="/Contact">Contact</Link>
-        </div>
+<div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex">
+<Link to="/">Home</Link>
+        <a href="#pooja">Pooja</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+</div>
 
-        {/* Mobile menu toggle button */}
-        <div className="md:hidden flex items-center hover:cursor-pointer" onClick={toggleMenu}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-white"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </div>
+
+      <div className="md:hidden flex items-center">
+        <button onClick={toggleMenu}>
+          {menuOpen ? (
+            <RxCross2 className="text-[5vw] absolute right-12 top-5 sm:hidden text-4xl" />
+          ) : (
+            <FaBars className="text-[5vw] absolute right-12 top-5 sm:hidden text-4xl" />
+          )}
+        </button>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-orange-400 py-4 px-6`}
-      >
-        <Link to="/" className="block text-white text-xl py-2" onClick={toggleMenu}>
-          Home
-        </Link>
-        <Link to="/Puja" className="block text-white text-xl py-2" onClick={toggleMenu}>
-          Pooja
-        </Link>
-        <Link to="/About" className="block text-white text-xl py-2" onClick={toggleMenu}>
-          About
-        </Link>
-        <Link to="/Book" className="block text-white text-xl py-2" onClick={toggleMenu}>
-          Contact
-        </Link>
-      </div>
+      {menuOpen && (
+        <div className="md:hidden absolute z-10 top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-[8vh] gap-4 text-2xl">
+           <Link to="/">Home</Link>
+        <a href="#pooja">Pooja</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        </div>
+      )}
     </div>
   );
-};
+}
 
 export default Navbar;
+
+
+
+{/* <div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20">
+        <Link to="/">Home</Link>
+        <a href="#pooja">Pooja</a>
+        <a href="#about">About</a>
+         <Link to="/contact">Contact</Link>
+        <div className="">
+          <div id="google_translate_element" className=""></div>
+        </div>
+      </div> */}

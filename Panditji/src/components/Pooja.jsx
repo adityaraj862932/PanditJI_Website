@@ -13,22 +13,17 @@ const pujas = [
 
 const Pooja = () => {
   return (
-    <div className="h-[100vh] sm:h-[80%] text-white text-center p-6">
-      <h1 className="text-3xl font-bold text-orange-400">
-        Book Pandit Ji for All Types of Puja
-      </h1>
-      <p className="mt-2 text-black text-2xl">
-        We provide all types of puja services at your home or nearby locations
-      </p>
-
-      {/* Image Grid */}
-      <div className="mt-9 sm:mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
-        {pujas.slice(0, 4).map((puja, index) => (
+    <div className="h-[100vh] text-white text-center p-6 bg-orange-100">
+      <h1 className="text-3xl font-bold text-orange-400">Book Pandit Ji for All Types of Puja</h1>
+      <p className="mt-2 text-black text-1xl md:text-2xl">We provide all types of puja services at your home or nearby locations</p>
+      
+      <div className="mt-6 md:mt-20 grid grid-cols-3 md:grid-cols-4 gap-6 justify-center">
+        {pujas.map((puja, index) => (
           <div key={index} className="text-center">
             <img
               src={puja.image}
               alt={puja.name}
-              className="w-24 h-24 mx-auto rounded-full border-2 border-white"
+              className="w-16 md:w-24 h-16 md:h-24 mx-auto rounded-full border-2 border-white"
             />
             <p className="mt-2 text-lg text-orange-400 font-semibold">
               {puja.name}
@@ -52,11 +47,9 @@ const Pooja = () => {
           ))}
         </div>
       </div>
-
-      {/* Explore More Button */}
-      <button className="px-10 py-3 bg-orange-400 mt-14 rounded-lg">
-        Explore More
-      </button>
+      <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto"></div>
+      <button className="px-10 py-3 bg-orange-400 mt-14">Book Now</button>
+      
     </div>
   );
 };
