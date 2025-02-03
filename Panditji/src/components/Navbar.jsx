@@ -1,61 +1,69 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function Navbar() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    script.async = true;
-    document.body.appendChild(script);
-    
-    window.googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'hi',
-        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    };
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <div className='w-full h-[12vh] bg-orange-400 text-white flex items-center justify-between p-5'>
-        <img src="https://vaikunth.co/front_assets/image/logo/logo-black.svg" alt="" className='h-[3vw] filter invert'/>
-        
-        {/* Navbar Links */}
-        <div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20">
-          <Link
-            to="/"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Home
-          </Link>
-          <Link
-            to="/pooja"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Pooja
-          </Link>
-          <Link
-            to="/about"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            About
-          </Link>
-          <Link
-            to="/contact"
-            className="relative transition-all duration-300 hover:text-slate-500 hover:scale-105 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-[2px] after:bg-slate-500 after:transition-all after:duration-300 hover:after:w-full"
-          >
-            Contact
-          </Link>
-
-          <div id="google_translate_element" className="ml-5 "></div>
+    <div>
+      <div className="h-16 w-100% bg-orange-400 flex justify-between items-center px-4">
+        <div>
+          <img
+            src="https://vaikunth.co/front_assets/image/logo/logo-black.svg"
+            alt="Logo"
+            className="text-white h-10 w-auto filter invert mt-4 mb-4"
+          />
         </div>
 
-    </div>
-  )
-}
+        <div className="hidden md:flex w-[50%] justify-evenly items-center font-semibold text-xl text-white">
+          <Link to="/">Home</Link>
+          <Link to="/Pooja">Pooja</Link>
+          <Link to="/About">About</Link>
+          <Link to="/Contact">Contact</Link>
+        </div>
 
-export default Navbar
+        {/* Mobile menu toggle button */}
+        <div className="md:hidden flex items-center hover:cursor-pointer" onClick={toggleMenu}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden ${isMobileMenuOpen ? 'block' : 'hidden'} bg-orange-400 py-4 px-6`}
+      >
+        <Link to="/" className="block text-white text-xl py-2" onClick={toggleMenu}>
+          Home
+        </Link>
+        <Link to="/Puja" className="block text-white text-xl py-2" onClick={toggleMenu}>
+          Pooja
+        </Link>
+        <Link to="/About" className="block text-white text-xl py-2" onClick={toggleMenu}>
+          About
+        </Link>
+        <Link to="/Book" className="block text-white text-xl py-2" onClick={toggleMenu}>
+          Contact
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;

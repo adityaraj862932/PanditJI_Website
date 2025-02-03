@@ -13,23 +13,50 @@ const pujas = [
 
 const Pooja = () => {
   return (
-    <div className="h-[88vh] text-white text-center p-6">
-      <h1 className="text-3xl font-bold text-orange-400">Book Pandit Ji for All Types of Puja</h1>
-      <p className="mt-2 text-black text-2xl">We provide all types of puja services at your home or nearby locations</p>
-      
-      <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 justify-center">
-        {pujas.map((puja, index) => (
+    <div className="h-[100vh] sm:h-[80%] text-white text-center p-6">
+      <h1 className="text-3xl font-bold text-orange-400">
+        Book Pandit Ji for All Types of Puja
+      </h1>
+      <p className="mt-2 text-black text-2xl">
+        We provide all types of puja services at your home or nearby locations
+      </p>
+
+      {/* Image Grid */}
+      <div className="mt-9 sm:mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
+        {pujas.slice(0, 4).map((puja, index) => (
           <div key={index} className="text-center">
             <img
               src={puja.image}
               alt={puja.name}
               className="w-24 h-24 mx-auto rounded-full border-2 border-white"
             />
-            <p className="mt-2 text-lg text-orange-400 font-semibold">{puja.name}</p>
+            <p className="mt-2 text-lg text-orange-400 font-semibold">
+              {puja.name}
+            </p>
           </div>
         ))}
+
+        {/* Hidden for small and medium */}
+        <div className="hidden md:block md:col-span-full lg:hidden">
+          {pujas.slice(4, 6).map((puja, index) => (
+            <div key={index} className="text-center mt-2">
+              <img
+                src={puja.image}
+                alt={puja.name}
+                className="w-24 h-24 mx-auto rounded-full border-2 border-white"
+              />
+              <p className="mt-1 text-lg text-orange-400 font-semibold">
+                {puja.name}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-      <button className="px-10 py-3 bg-orange-400 mt-14">Book Now</button>
+
+      {/* Explore More Button */}
+      <button className="px-10 py-3 bg-orange-400 mt-14 rounded-lg">
+        Explore More
+      </button>
     </div>
   );
 };
