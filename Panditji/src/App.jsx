@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -7,25 +7,36 @@ import Pooja from './components/Pooja';
 import About from './components/About';
 import Footer from './components/Footer';
 import BookPage from './components/BookPage';
-import Page2 from './components/Page2';
 
 function App() {
   const [isBookPage, setIsBookPage] = useState(false); // Renamed to 'isBookPage' for clarity
+
+  
+
   const handleBookPageToggle = () => {
     setIsBookPage(true); // Set the state to true when button is clicked
+  };
+
+  const handleall = () => {
+    setIsBookPage(false); // Set the state to true when button is clicked
   };
   return (
     <div>
       {isBookPage ? (
-        <div>
-          <Navbar />
+        <div >
+          <div className='w-screen h-auto overflow-hidden'>
+          <Navbar handleall={handleall}/>
+          </div>
+
+          <div className='h-[88vh] w-screen'>
           <Routes>
             <Route path="/BookPage" element={<BookPage />} />
-          </Routes>
+          </Routes> 
+          </div>
         </div>
       ) : (
-        <div className="w-full h-screen bg-orange-100">
-          <Navbar />
+        <div className="w-full h-screen">
+          <Navbar handleall={handleall}/>
           <Routes>
             <Route path="/" element={<Hero />} />
             <Route path="/BookPage" element={<BookPage />} />
