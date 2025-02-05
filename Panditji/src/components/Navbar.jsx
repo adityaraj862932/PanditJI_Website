@@ -51,6 +51,7 @@ function Navbar({handleall}) {
 <Link to="/">Home</Link>
         <a href="#pooja">Pooja</a>
         <a href="#about">About</a>
+        <a href="#Gallery">Gallery</a>
         <a href="#contact">Contact</a>
 </div>
 

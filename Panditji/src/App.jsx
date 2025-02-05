@@ -7,6 +7,7 @@ import Pooja from './components/Pooja';
 import About from './components/About';
 import Footer from './components/Footer';
 import BookPage from './components/BookPage';
+import Gallery from './Components/Gallery';
 
 function App() {
   const [isBookPage, setIsBookPage] = useState(false); // Renamed to 'isBookPage' for clarity
@@ -47,6 +48,9 @@ function App() {
           </div>
           <div id="about">
             <About />
+          </div>
+          <div id="Gallery">
+            <Gallery />
           </div>
           <div id="contact">
             <Contact />
