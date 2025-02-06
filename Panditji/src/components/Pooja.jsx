@@ -62,7 +62,7 @@ const Pooja = ({ onButtonClick }) => {
 
               {/* Book Now Button Appears on Hover */}
               <button
-                className="absolute inset-0 flex items-center justify-center bg-orange-400 bg-opacity-90 text-white font-bold py-2 px-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 flex items-center justify-center bg-orange-500 bg-opacity-90 text-white font-bold py-2 px-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 "
               >
                 Book Now
               </button>
@@ -78,7 +78,7 @@ const Pooja = ({ onButtonClick }) => {
         navigate('/BookPage');
         onButtonClick();
       }}
-         className="px-10 py-3 bg-orange-400 mt-14 rounded-full">Explore More</button>
+         className="px-10 py-3 bg-orange-500 mt-14 rounded-full hover:bg-orange-700 "><strong>Explore More</strong></button>
       </div>
 
     </div>

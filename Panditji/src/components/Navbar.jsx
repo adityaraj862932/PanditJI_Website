@@ -3,7 +3,7 @@ import { FaAngleDown, FaBars } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 
-function Navbar() {
+function Navbar({handleall}) {
 
   const navigate = useNavigate()
   function handleclick(){
@@ -44,10 +44,14 @@ function Navbar() {
         className="h-[8vw] md:h-[3vw] filter invert"
       />
 
-<div className="optn  items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex">
+<div className="optn  items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex" onClick={() => {
+        navigate('/');
+        handleall();
+      }} >
 <Link to="/">Home</Link>
         <a href="#pooja">Pooja</a>
         <a href="#about">About</a>
+        <a href="#Gallery">Gallery</a>
         <a href="#contact">Contact</a>
 </div>
 
