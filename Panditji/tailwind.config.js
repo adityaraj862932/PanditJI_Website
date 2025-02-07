@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundPosition: {
+        fromCenter: '50% calc(100% - var(--bottom-distance))',
+      },
+    },
   },
   plugins: [],
 }
