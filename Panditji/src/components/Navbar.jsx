@@ -3,10 +3,10 @@ import { FaAngleDown, FaBars } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 
-function Navbar({handleall}) {
+function Navbar({ handleall }) {
 
   const navigate = useNavigate()
-  function handleclick(){
+  function handleclick() {
     navigate('/contact')
   }
 
@@ -44,16 +44,16 @@ function Navbar({handleall}) {
         className="h-[8vw] md:h-[3vw] filter invert"
       />
 
-<div className="optn  items-center gap-5 text-[1.5vw] text-white mr-20 hidden md:flex" onClick={() => {
+      <div className="optn  items-center w-[50%] flex-row justify-around text-[1.5vw] text-white mr-10 hidden md:flex " onClick={() => {
         navigate('/');
         handleall();
       }} >
-<Link to="/">Home</Link>
-        <a href="#pooja">Pooja</a>
-        <a href="#about">About</a>
-        <a href="#Gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-</div>
+        <Link className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" to="/">Home</Link>
+        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#pooja">Pooja</a>
+        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#about">About</a>
+        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#Gallery">Gallery</a>
+        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#contact">Contact</a>
+      </div>
 
 
       <div className="md:hidden flex items-center">
@@ -67,11 +67,11 @@ function Navbar({handleall}) {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden absolute z-10 top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-[8vh] gap-4 text-2xl">
-           <Link to="/">Home</Link>
-        <a href="#pooja">Pooja</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <div className="md:hidden absolute z-10 top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-[8vh] gap-4 text-2xl ">
+          <Link className="hover:underline hover:text-2xl hover:font-semibold" to="/">Home</Link>
+          <a className="hover:underline hover:text-2xl hover:font-semibold" href="#pooja">Pooja</a>
+          <a className="hover:underline hover:text-2xl hover:font-semibold" href="#about">About</a>
+          <a className="hover:underline hover:text-2xl hover:font-semibold" href="#contact">Contact</a>
         </div>
       )}
     </div>
