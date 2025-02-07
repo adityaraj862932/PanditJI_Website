@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { FaAngleDown, FaBars } from "react-icons/fa6";
+import { FaBars } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
 
 function Navbar({ handleall }) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
   function handleclick() {
-    navigate('/contact')
+    navigate('/contact');
   }
 
   const [menuOpen, setMenuOpen] = useState(false);
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   useEffect(() => {
@@ -44,18 +43,32 @@ function Navbar({ handleall }) {
         className="h-[8vw] md:h-[3vw] filter invert"
       />
 
-      <div className="optn  items-center w-[50%] flex-row justify-around text-[1.5vw] text-white mr-10 hidden md:flex " onClick={() => {
-        navigate('/');
-        handleall();
-      }} >
-        <Link className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" to="/">Home</Link>
-        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#pooja">Pooja</a>
-        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#about">About</a>
-        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#Gallery">Gallery</a>
-        <a className="hover:underline hover:text-2xl hover:font-semibold font-[Marcellus]" href="#contact">Contact</a>
+      {/* Desktop Navigation */}
+      <div
+        className="optn items-center w-[50%] flex-row justify-around text-[1.5vw] text-white mr-10 hidden md:flex"
+        onClick={() => {
+          navigate('/');
+          handleall();
+        }}
+      >
+        <div className="h-10 w-20 flex justify-center items-center  hover:text-gray-200  expand-center link-hover-effect">
+          <Link className="font-[Marcellus] px-2.5  text-2xl font-bold transition-all duration-200 " to="/">Home</Link>
+        </div>
+        <div className="h-10  w-20  hover:text-gray-200  expand-center link-hover-effect">
+          <a className="font-[Marcellus] px-2.5 fromCenter font-bold transition-all duration-200  text-2xl " href="#pooja">Pooja</a>
+        </div>
+        <div className="h-10 w-20 hover:text-gray-200  expand-center link-hover-effect">
+          <a className="text-center px-2 font-[Marcellus]  text-2xl font-bold transition-all duration-200 " href="#about">About</a>
+        </div>
+        <div className="h-10 w-24 hover:text-gray-200  expand-center link-hover-effect">
+          <a className="font-[Marcellus] px-2 text-2xl font-bold transition-all duration-200 " href="#Gallery">Gallery</a>
+        </div>
+        <div className="h-10 w-24 hover:text-gray-200 expand-center link-hover-effect">
+          <a className="font-[Marcellus] px-2  text-2xl font-bold transition-all duration-200 " href="#contact">Contact</a>
+        </div>
       </div>
 
-
+      {/* Mobile Navigation */}
       <div className="md:hidden flex items-center">
         <button onClick={toggleMenu}>
           {menuOpen ? (
@@ -67,11 +80,11 @@ function Navbar({ handleall }) {
       </div>
 
       {menuOpen && (
-        <div className="md:hidden absolute z-10 top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-[8vh] gap-4 text-2xl ">
-          <Link className="hover:underline hover:text-2xl hover:font-semibold" to="/">Home</Link>
-          <a className="hover:underline hover:text-2xl hover:font-semibold" href="#pooja">Pooja</a>
-          <a className="hover:underline hover:text-2xl hover:font-semibold" href="#about">About</a>
-          <a className="hover:underline hover:text-2xl hover:font-semibold" href="#contact">Contact</a>
+        <div className="md:hidden absolute z-10 top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-[8vh] gap-4 text-2xl">
+          <Link className="hover:underline" to="/">Home</Link>
+          <a className="hover:underline" href="#pooja">Pooja</a>
+          <a className="hover:underline" href="#about">About</a>
+          <a className="hover:underline" href="#contact">Contact</a>
         </div>
       )}
     </div>
@@ -79,15 +92,3 @@ function Navbar({ handleall }) {
 }
 
 export default Navbar;
-
-
-
-{/* <div className="optn flex items-center gap-5 text-[1.5vw] text-white mr-20">
-        <Link to="/">Home</Link>
-        <a href="#pooja">Pooja</a>
-        <a href="#about">About</a>
-         <Link to="/contact">Contact</Link>
-        <div className="">
-          <div id="google_translate_element" className=""></div>
-        </div>
-      </div> */}
