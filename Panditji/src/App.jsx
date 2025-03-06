@@ -36,7 +36,7 @@ function App() {
               <Route path="/Photo_list" element={<BookPage />} />
               {/* <Route path="/Photo_list" element={<Photo_list />} /> */}
             </Routes>
-              <Footer />
+            <Footer />
           </div>
         </div>
       ) : (
