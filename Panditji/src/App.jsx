@@ -7,7 +7,7 @@ import Pooja from './components/Pooja';
 import About from './components/About';
 import Footer from './components/Footer';
 import BookPage from './components/BookPage';
-import Gallery from './Components/Gallery';
+import Gallery from './components/Gallery';
 import Photo_list from './components/Photo_list';
 
 function App() {
