@@ -50,46 +50,50 @@ function Contact() {
   };
 
   return (
-    <div className='w-full h-[102vh] flex items-center justify-end bg-orange-100 shadow-xl py-8 '>
-      <div className="w-1/2  bg-orange-100 flex flex-col items-center justify-center text-center">
-        {/* Header */}
-        <h2 className="text-3xl font-bold mb-2">Get in Touch</h2>
-        <p className='h-[2px] w-5/6 bg-black'></p>
+    <div className='w-full h-[100vh] flex items-center justify-end bg-orange-100 shadow-xl py-8 '>
+       <div className="w-1/2  bg-orange-100 flex flex-col items-center justify-center text-center">
+      {/* Header */}
+      <h2 className="text-3xl font-bold mb-2">Get in Touch</h2>
+      <p className='h-[2px] w-5/6 bg-black'></p>
 
-        {/* Location with Map */}
-        <div className="w-full mb-6 flex justify-center ">
-          <div className="w-3/4 h-300 rounded-lg overflow-hidden  ">
-            <iframe
-              className="w-full h-full mt-8 "
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.8203010851876!2d77.46602737796618!3d23.249625353732284!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4203e513c28f%3A0x15442925d721f3ba!2sBean%20Gate%20IT%20Solutions%20PVT.%20LTD.%20Mobile%20App%20Deveopment%20company%20in%20Bhopal%20%7C%20Website%2C%20Software%20companies%20in%20Bhopal!5e0!3m2!1sen!2sus!4v1738526045233!5m2!1sen!2sus"
-              allowFullScreen=""
-              loading="lazy"
-            ></iframe>
+      {/* Location with Map */}
+      <div className="w-full p-6 flex justify-center ">
+              <div className="w-3/4 h-300 rounded-lg overflow-hidden  ">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14663.281683037998!2d77.470898!3d23.249621!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c4203e513c28f%3A0x15442925d721f3ba!2sBean%20Gate%20IT%20Solutions%20PVT.%20LTD.%20Mobile%20App%20Deveopment%20company%20in%20Bhopal%20%7C%20Website%2C%20Software%20companies%20in%20Bhopal!5e0!3m2!1sen!2sus!4v1738917827471!5m2!1sen!2sus" 
+                className='h-80 w-full'
+                allowfullscreen="" 
+                loading="lazy" >
+              </iframe>"
+             
+        </div>
+              
+      </div>
+
+      <div className='w-full h-50 flex  justify-between pl-20 pr-10'>
+
+            {/* Address */}
+            <div className="mb-4 text-left">
+            <h3 className="text-lg font-bold">Address : </h3>
+            <p>123 Street Name,<br /> City, State, ZIP</p>
           </div>
 
-        </div>
+          {/* Contact Details */}
+          <div className="mb-4 text-left">
+            <h3 className="text-xl font-bold">Contact : </h3>
+            <p> <strong>Phone:</strong>+91 98765 43210</p>
+            <p><strong>Email:</strong> contact@yourcompany.com</p>
+          </div>
 
-        {/* Address */}
-        <div className="mb-4">
-          <h3 className="text-lg font-semibold">Address</h3>
-          <p>123 Street Name, City, State, ZIP</p>
-        </div>
-
-        {/* Contact Details */}
-        <div className="mb-4">
-          <h3 className="text-xl font-bold">Contact</h3>
-          <p> <strong>Phone:</strong>+91 98765 43210</p>
-          <p><strong>Email:</strong> contact@yourcompany.com</p>
-        </div>
-
-        {/* Social Media Links */}
-        <div className="flex space-x-4 ">
-          <a href="#" className="text-pink-500 text-3xl  hover:text-orange-900"><CiInstagram /></a>
-          <a href="#" className="text-blue-600 text-3xl  hover:text-orange-900"> <CiFacebook /></a>
-          <a href="#" className="text-black text-3xl  hover:text-orange-900"> <FaXTwitter /></a>
-          <a href="#" className="text-green-700 text-3xl hover:text-orange-500 "> <BsWhatsapp /></a>
-        </div>
       </div>
+
+      {/* Social Media Links */}
+      <div className=" space-x-4  w-full h-25 flex justify-center items-baseline gap-3 text-4xl">
+        <a href="#" className="text-pink-500   hover:text-orange-900"><CiInstagram /></a>
+        <a href="#" className="text-blue-600  hover:text-orange-900"> <CiFacebook /></a>
+        <a href="#" className="text-black  hover:text-orange-900"> <FaXTwitter /></a>
+        <a href="#" className="text-green-700  hover:text-orange-500 "> <BsWhatsapp /></a>
+      </div>
+    </div>
 
 
       <div className="w-1/2 h-full">
