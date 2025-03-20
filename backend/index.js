@@ -12,10 +12,10 @@ app.use(cors());
 connectDB();
 
 // Routes
-const userRoutes = require("./routes/userRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
+const userRoutes = require("./routes/users");
+const bookingRoutes = require("./routes/booking");
 
-app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes)
 app.use("/api/bookings", bookingRoutes);
 
 // Start Server
