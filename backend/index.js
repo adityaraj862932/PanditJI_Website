@@ -16,10 +16,10 @@ connectDB();
 
 // Routes
 const userRoutes = require("./routes/users");
-// const bookingRoutes = require("./routes/boooking");
+const bookingRoutes = require("./routes/booking");
 
 app.use("/api/users", userRoutes);
-// app.use("/api/bookings", bookingRoutes);
+app.use("/api/users", bookingRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
