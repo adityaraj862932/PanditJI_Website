@@ -1,9 +1,10 @@
 const express=require('express');
-const {poojalist,newpooja}=require('../controllers/poojas.js');
+const {upload}=require('../config/cloudinaryConfig.js')
+const {poojalist,newpooja}=require('../controllers/pooja.js');
 
 const router=express.Router();
 
 router.get('/poojalist',poojalist);
-router.post('/poojalist',newpooja);
+router.post('/newpooja',upload.single("imageUrl"),newpooja);
 
-export default router;
+module.exports=router;

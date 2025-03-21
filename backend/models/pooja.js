@@ -3,20 +3,21 @@ const mongoose = require("mongoose");
 const PoojaSchema = mongoose.Schema({
     imageUrl:{
         type:String,
-        require:true,
+        required:true,
     },
     title:{
         type:String,
-        require:true,
+        required:true,
     },
-    price:Number,
+    price:String,
     Desc:{
         type:String,
-        require: true,
+        required: true,
+        min:0,
     },
     Avaibility:{
-        type:Boolean,
-        require:true
+        type:String,
+        required:true
     }
 })
 const Pooja = new mongoose.model("Pooja",PoojaSchema);

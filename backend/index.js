@@ -12,11 +12,11 @@ app.use(cors());
 connectDB();
 
 // Routes
-const userRoutes = require("./routes/users");
-const bookingRoutes = require("./routes/booking");
+const userRoutes = require("./routes/pooja.js");
+// const bookingRoutes = require("./routes/booking");
 
 app.use("/api/users", userRoutes)
-app.use("/api/bookings", bookingRoutes);
+// app.use("/api/bookings", bookingRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

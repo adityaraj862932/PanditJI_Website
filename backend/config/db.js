@@ -1,9 +1,9 @@
 require("dotenv").config()
 const mosgoose = require("mongoose");
 
-const connectDB = () =>{
+const connectDB = async() =>{
     try{
-        mosgoose.connect(process.env.MONGO_URI)
+        await mosgoose.connect(process.env.MONGO_URI)
         console.log("Database connected successfully");
     }catch(err){
         console.log(`Database Did not connect ${err.message}`)
