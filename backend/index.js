@@ -7,18 +7,19 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000", credentials: true })); // Adjust origin for frontend
+// app.use(cors({ origin: "http://localhost:3000", credentials: true })); // Adjust origin for frontend
+app.use(cors());
 app.use(cookieParser());
 
 // Connect to MongoDB
 connectDB();
 
 // Routes
-const userRoutes = require("./routes/userRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
+const userRoutes = require("./routes/users");
+// const bookingRoutes = require("./routes/boooking");
 
 app.use("/api/users", userRoutes);
-app.use("/api/bookings", bookingRoutes);
+// app.use("/api/bookings", bookingRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

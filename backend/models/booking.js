@@ -4,12 +4,12 @@ const bookingSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User', // Reference to User model
+            ref: 'user', // Reference to User model
             required: true
         },
-        puja: {
+        pooja: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Puja', // Reference to Puja model
+            ref: 'Pooja', // Reference to Puja model
             required: true
         },
         address: {
@@ -24,7 +24,7 @@ const bookingSchema = new mongoose.Schema(
         },
         status: {
             type: String,
-            enum: ["pending", "confirmed", "completed", "cancelled"],
+            enum: ["pending", "confirmed", "cancelled"],
             default: "pending"
         }
     },
