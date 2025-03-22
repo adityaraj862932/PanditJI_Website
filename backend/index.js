@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db"); // Import the database connection file
@@ -12,10 +13,12 @@ app.use(cors());
 connectDB();
 
 // Routes
-const userRoutes = require("./routes/pooja.js");
+const poojaRoutes = require("./routes/pooja.js");
+const galleryRoutes=require("./routes/gallery.js");
 // const bookingRoutes = require("./routes/booking");
 
-app.use("/api/users", userRoutes)
+app.use("/api/users", poojaRoutes);
+app.use("/", galleryRoutes);
 // app.use("/api/bookings", bookingRoutes);
 
 // Start Server

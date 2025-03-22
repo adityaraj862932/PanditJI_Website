@@ -17,8 +17,12 @@ const PoojaSchema = mongoose.Schema({
     },
     Avaibility:{
         type:String,
-        required:true
-    }
+        required:true,
+    },
+    imagePublicId:{
+        type:String,
+    },
+  
 })
 const Pooja = new mongoose.model("Pooja",PoojaSchema);
 module.exports = Pooja;

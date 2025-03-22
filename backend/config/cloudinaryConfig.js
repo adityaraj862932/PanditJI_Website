@@ -11,12 +11,28 @@ cloudinary.config({
 
 const storage = new CloudinaryStorage({
     cloudinary,
-    params: {
+    params:async(req,file)=> {
+        return{
         folder: "pooja_images",
         allowed_formats: ["jpg", "png", "jpeg"],
-    }
+        public_id:file.originalname.split(".")[0],
+    };
+
+    },
+});
+
+const storage2 = new CloudinaryStorage({
+    cloudinary,
+    params:async(req,file)=> {
+        return{
+        folder: "Gallery",
+        allowed_formats: ["jpg", "png", "jpeg"],
+        public_id:file.originalname.split(".")[0],
+    };
+
+    },
 });
 
 const upload = require("multer")({ storage });
-
-module.exports = { cloudinary, upload };
+const upload2 = require("multer")({ storage: storage2  });
+module.exports = { cloudinary, upload, upload2 };
