@@ -8,6 +8,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import BookPage from './components/BookPage';
 import Gallery from './components/Gallery';
+import Login from './components/Login';
 import Photo_list from './components/Photo_list';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Hero />} />
               <Route path="/BookPage" element={<BookPage />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
 
@@ -55,13 +57,14 @@ function App() {
           <div id="about">
             <About />
           </div>
-          <div id="Gallery">
+          <div id="gallery">
             <Gallery onButtonClick={handleBookPageToggle} />
           </div>
           <div id="contact">
             <Contact />
           </div>
-
+         
+          
           <Footer />
         </div>
       )}

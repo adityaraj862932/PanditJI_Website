@@ -18,8 +18,8 @@ connectDB();
 const userRoutes = require("./routes/users");
 const bookingRoutes = require("./routes/booking");
 
-app.use("/api/users", userRoutes);
-app.use("/api/users", bookingRoutes);
+app.use("/users", userRoutes);
+app.use("/users", bookingRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

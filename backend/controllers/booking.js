@@ -1,4 +1,4 @@
-const Booking = require("../models/bookingSchema");
+const Booking = require("../models/booking");
 
 const newBooking = async (req, res) => {
     try {
@@ -8,6 +8,7 @@ const newBooking = async (req, res) => {
             return res.status(400).json({ message: "All fields are required." });
         }
 
+        // const existingUser = Booking.findOne({})
         const newBooking = new Booking({
             user: req.user._id,
             pooja,

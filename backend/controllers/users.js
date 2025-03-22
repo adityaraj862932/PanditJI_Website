@@ -5,10 +5,10 @@ const jwt = require("jsonwebtoken");
 // Admin Login
 const adminLogin = async (req, res) => {
   try {
-    const { mobile_number, password, role} = req.body;
-
+    const { mobile, password, role} = req.body;
+    
     // Find the admin by mobile number
-    const existingUser = await User.findOne({$and: [{ mobile_number }, { role }]});
+    const existingUser = await User.findOne({$and: [{ mobile_number:mobile }, { role }]});
     
     if (!existingUser) {
       return res
@@ -29,7 +29,7 @@ const adminLogin = async (req, res) => {
     const token = jwt.sign(
       {
         id: existingUser._id,
-        mobile_number: existingUser.mobile_number,
+        mobile_number: existingUser.mobile,
         role: "admin",
       },
       process.env.SECRET,
@@ -53,15 +53,14 @@ const adminLogin = async (req, res) => {
 // User Login
 const loginUser = async (req, res) => {
   try {
-    const { mobile_number, password, role } = req.body;
-    console.log({ mobile_number, password, role });
+    const { mobile, password, role } = req.body;
     
     if (role === "admin") {
       return await adminLogin(req, res);
     }
 
     // Find user by mobile number
-    const existingUser = await User.findOne({$and: [{ mobile_number }, { role }]});
+    const existingUser = await User.findOne({$and: [{ mobile_number:mobile }, { role }]});
     if (!existingUser) {
       return res
         .status(404)
@@ -81,7 +80,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign(
       {
         id: existingUser._id,
-        mobile_number: existingUser.mobile_number,
+        mobile_number: existingUser.mobile,
         role: "user",
       },
       process.env.SECRET,
@@ -109,10 +108,10 @@ const loginUser = async (req, res) => {
 const userRegister = async (req, res) => {
   
   try {
-    const { mobile_number,email,name, role, password } = req.body;
-
+    const { mobile,email,name, role, password } = req.body;
+    
     // Check if user already exists
-    const existingUser = await User.findOne({ mobile_number,role });
+    const existingUser = await User.findOne({ mobile_number:mobile,role });
     if (existingUser) {
       return res
         .status(400)
@@ -125,7 +124,7 @@ const userRegister = async (req, res) => {
 
     // Create new user
     const newUser = new User({
-      mobile_number,
+      mobile_number:mobile,
       password: hashedPassword,
       email,
       name, 
@@ -137,7 +136,7 @@ const userRegister = async (req, res) => {
 
     // Generate JWT Token
     const token = jwt.sign(
-      { id: newUser._id, mobile_number: newUser.mobile_number, role: "user" },
+      { id: newUser._id, mobile_number: newUser.mobile, role: "user" },
       process.env.SECRET,
       { expiresIn: "1h" }
     );
