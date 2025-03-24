@@ -1,3 +1,4 @@
+const { cloudinary } = require('../config/cloudinaryConfig.js');
 const gallery=require('../models/gallery.js');
 
 const allphotos=async(req,res)=>{
@@ -30,7 +31,23 @@ const addphotos=async(req,res)=>{
     res.status(400).json({message:"Server error",Error:error,})
 
   }
-
 }
 
-module.exports={allphotos,addphotos}
+const deletephoto=async(req,res)=>{
+  try{
+    const {id} =req.params;
+
+  const photo=await gallery.findById(id)
+  if (!photo){
+    res.status(400).json({message:"photo not found"})
+  }
+  await cloudinary.uploader.destroy(photo.imagePublicId)
+  await gallery.findByIdAndDelete(id)
+  res.status(201).json({message:"Photo Deleted Successfully!"})
+  }
+  catch(error){
+    res.status(400).json({message:"Server Error",Error:error})
+  }
+}
+
+module.exports={allphotos,addphotos,deletephoto}

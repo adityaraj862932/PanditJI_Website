@@ -40,4 +40,23 @@ const newpooja = async(req,res)=>{
     }
 };
 
-module.exports={poojalist,newpooja};
+const deletepooja=async(req,res)=>{
+    try{ 
+        const {id}=req.params;
+        
+        const puja=await Pooja.findById(id)
+   
+        if(!puja){      
+           return res.status(400).json({message:"No Pooja found !"});
+        }
+   
+       await cloudinary.uploader.destroy(puja.imagePublicId);
+       await Pooja.findByIdAndDelete(id)
+       res.status(201).json({message:"Deleted Successfully"})
+    }catch(error){
+        res.status(400).json({messgae:"Server error",Error:error})
+    }
+
+}
+
+module.exports={poojalist,newpooja,deletepooja};
