@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -15,10 +16,14 @@ app.use(cookieParser());
 connectDB();
 
 // Routes
-const userRoutes = require("./routes/users");
-const bookingRoutes = require("./routes/booking");
+const poojaRoutes = require("./routes/pooja.js");
+const galleryRoutes=require("./routes/gallery.js");
+// const bookingRoutes = require("./routes/booking");
 const dashboard = require("./routes/admin/dashboard");
 
+app.use("/api/users", poojaRoutes);
+app.use("/", galleryRoutes);
+// app.use("/api/bookings", bookingRoutes);
 app.use("/users", userRoutes);
 app.use("/users", bookingRoutes);
 app.use("/admin", dashboard);
