@@ -114,32 +114,33 @@ const userRegister = async (req, res) => {
     const existingUser = await User.findOne({ mobile_number:mobile,role });
     if (existingUser) {
       return res
-        .status(400)
-        .json({ message: "User already exists. Please log in." });
+      .status(400)
+      .json({ message: "User already exists. Please log in." });
     }
-
+    
     // Hash the password
     const salt = await bcrypt.genSalt(8);
     const hashedPassword = await bcrypt.hash(password, salt);
-
+    
     // Create new user
     const newUser = new User({
       mobile_number:mobile,
       password: hashedPassword,
-      email,
-      name, 
-      role,
+      email:email,
+      name:name, 
+      role:role,
     });
-
+    
     // Save user to database
     await newUser.save();
-
+    
     // Generate JWT Token
     const token = jwt.sign(
       { id: newUser._id, mobile_number: newUser.mobile, role: "user" },
       process.env.SECRET,
       { expiresIn: "1h" }
     );
+    console.log(token);
 
     // Set Cookie
     res.cookie("token", token, {
