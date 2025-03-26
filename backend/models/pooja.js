@@ -15,7 +15,7 @@ const PoojaSchema = mongoose.Schema({
         required: true,
         min:0,
     },
-    Avaibility:{
+    Availability:{
         type:String,
         required:true,
     },

@@ -9,9 +9,9 @@ const poojalist=async(req,res)=>{
 
 const newpooja = async(req,res)=>{
     try{
-        const {title,Desc,price,Avaibility}=req.body;
-        // console.log("Request Body:", req.body);  // Check text data
-        // console.log("Uploaded File:", req.file); // Check file data
+        const {title,Desc,price,Availability}=req.body;
+        console.log("Request Body:", req.body);  // Check text data
+        console.log("Uploaded File:", req.file); // Check file data
         
         if(!req.file){
             return res.status(400).json({message:"Image required"});
@@ -25,7 +25,7 @@ const newpooja = async(req,res)=>{
             return res.status(400).json({message:'Duplicate image'})  
             }
 
-            const pooja=new Pooja({title,Desc,price,Avaibility,imageUrl,imagePublicId})
+            const pooja=new Pooja({title,Desc,price,Availability,imageUrl,imagePublicId})
             await pooja.save();
             // console.log(pooja);
             

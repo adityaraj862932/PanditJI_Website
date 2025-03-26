@@ -20,8 +20,10 @@ const poojaRoutes = require("./routes/pooja.js");
 const galleryRoutes=require("./routes/gallery.js");
 // const bookingRoutes = require("./routes/booking");
 const dashboard = require("./routes/admin/dashboard");
+const userRoutes=require('./routes/users.js')
+const bookingRoutes=require('./routes/booking.js')
 
-app.use("/api/users", poojaRoutes);
+app.use("/users", poojaRoutes);
 app.use("/", galleryRoutes);
 // app.use("/api/bookings", bookingRoutes);
 app.use("/users", userRoutes);
