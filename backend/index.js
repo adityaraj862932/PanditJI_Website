@@ -16,6 +16,7 @@ app.use(cookieParser());
 connectDB();
 
 // Routes
+// const Getgallery = require("./routes")
 const poojaRoutes = require("./routes/pooja.js");
 const galleryRoutes=require("./routes/gallery.js");
 // const bookingRoutes = require("./routes/booking");
@@ -23,12 +24,12 @@ const dashboard = require("./routes/admin/dashboard");
 const userRoutes=require('./routes/users.js')
 const bookingRoutes=require('./routes/booking.js')
 
-app.use("/users", poojaRoutes);
-app.use("/", galleryRoutes);
+app.use("/admin", dashboard);
+app.use("/admin", galleryRoutes);
 // app.use("/api/bookings", bookingRoutes);
+app.use("/users", poojaRoutes);
 app.use("/users", userRoutes);
 app.use("/users", bookingRoutes);
-app.use("/admin", dashboard);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

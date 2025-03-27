@@ -4,8 +4,8 @@ const {allphotos,addphotos,deletephoto}=require('../controllers/gallery.js');
 
 const router=express.Router();
 
-router.get('/gallery',allphotos)
-router.post('/admin/gallery',upload2.single('imageUrl'),addphotos)
-router.delete('/admin/gallery/:id',deletephoto)
+router.get('/allphotos',allphotos)
+router.post('/addphoto',upload2.single('imageUrl'),addphotos)
+router.delete('/deletephoto/:id',deletephoto)
 
 module.exports=router;

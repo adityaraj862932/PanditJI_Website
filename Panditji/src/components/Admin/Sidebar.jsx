@@ -15,7 +15,7 @@ const Sidebar = () => {
           <Link to="/admin/gallery" className="block p-2 hover:bg-gray-700 rounded">Manage Gallery</Link>
         </li>
         <li>
-          <Link to="/admin/contact" className="block p-2 hover:bg-gray-700 rounded">Manage Contact Queries</Link>
+          <Link to="/admin/message" className="block p-2 hover:bg-gray-700 rounded">Messages</Link>
         </li>
         <li>
           <Link to="/admin/users" className="block p-2 hover:bg-gray-700 rounded">Manage Users</Link>

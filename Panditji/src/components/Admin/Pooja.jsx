@@ -1,100 +1,67 @@
-import { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Pooja = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    Desc: "",
-    price: "",
-    Availability: "1", // 1 for active, 0 for inactive
-    imageUrl: null,
-  });
+function Pooja() {
+  const navigate = useNavigate();
+  const [poojas, setPoojas] = useState([]); // Store the entire array
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  useEffect(() => {
+    const fetchPoojas = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/users/poojalist");
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, imageUrl: e.target.files[0] });
-  };
+        if (Array.isArray(response.data)) {
+          console.log("Response data length:", response.data.length);
+          setPoojas(response.data); // Store the full array
+        } else {
+          console.error("Unexpected response structure:", response.data);
+        }
+      } catch (err) {
+        alert(err.message);
+      }
+    };
+    fetchPoojas();
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("title", formData.title);
-    data.append("Desc", formData.description);
-    data.append("price", formData.price);
-    data.append("Availability", formData.Availability);
-    data.append("imageUrl", formData.imageUrl);
-
-    try {
-      const response = await fetch("http://localhost:8000/api/users/newpooja", {
-        method: "POST",
-        body: data,
-      });
-      const result = await response.json();
-      alert(result.message);
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to upload.");
-    }
+  const handleAddPooja = () => {
+    navigate("/admin/addPooja");
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Add Pooja</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          value={formData.title}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-          required
-        />
-        <textarea
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-          required
-        ></textarea>
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={formData.price}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-          required
-        />
-        <select
-          name="Availability"
-          value={formData.Availability}
-          onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded"
-        >
-          <option value="1">Active</option>
-          <option value="0">Inactive</option>
-        </select>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="w-full p-2 border border-gray-300 rounded"
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
-        >
-          Submit
-        </button>
-      </form>
+    <div className="relative min-h-screen p-4 text-white">
+      <h1 className="text-2xl font-bold mb-4">Pooja List</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {poojas.map((pooja, index) => (
+          <div key={index} className="border rounded-lg shadow-md p-4">
+            <img
+              src={pooja.imageUrl}
+              alt={pooja.title}
+              className="w-full h-40 object-cover rounded-md"
+            />
+            <h2 className="text-lg font-semibold mt-2">{pooja.title}</h2>
+            <p className="">{pooja.Desc}</p>
+            <p className="text-green-600 font-bold mt-1">₹{pooja.price}</p>
+            <p className="text-sm mt-1">
+              Availability:{" "}
+              <span className={pooja.Availability ? "text-green-500" : "text-red-500"}>
+                {pooja.Availability ? "Available" : "Not Available"}
+              </span>
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Floating Add Button */}
+      <button
+        className="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full shadow-lg hover:bg-green-600 transition text-3xl flex items-center justify-center"
+        onClick={handleAddPooja}
+      >
+        <strong>+</strong>
+      </button>
     </div>
   );
-};
+}
 
 export default Pooja;
