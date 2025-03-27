@@ -1,20 +1,26 @@
-import React from "react";
+ import {React,useState,useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
-const pujas = [
-  { name: "Satyanarayan Puja", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/ic_satyanarayan-pujan-e1710942312823-300x300.jpg" },
-  { name: "Ganesh Puja", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/29_08_2022-ganesh-chaturthi1_23023192-e1710942242501-300x300.webp" },
-  { name: "Vrat Katha", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/images.jpeg" },
-  { name: "Havan", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/Hawan-Yagya-Banner-e1710942390431-300x300.png" },
-  { name: "Durga Puja", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/unnamed-e1710942278260-300x300.jpg" },
-  { name: "Kali Puja", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/navratrimaadurga-e1711184335630-300x300.jpg" },
-  { name: "Garun Pujaan", image: "https://panditjigaurcity.com/wp-content/uploads/2024/03/Garuda-Purana-Path-e1711186293730-300x300.jpg" },
-  { name: "Lakshmi Puja", image: "https://panditjigaurcity.com/wp-content/uploads/2024/04/lakshmi-puja-decoration-150x150.jpg" },
-];
 
 const Pooja = ({ onButtonClick }) => {
 
   const navigate = useNavigate();
+    const [Pooja_list,setPooja_list]=useState([]);
+  ``
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/users/poojalist');
+          setPooja_list(response.data);
+          console.log("Fetched Pooja List:", response.data);
+        } catch (error) {
+          console.error("Error fetching pooja list:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
   return (
     <div className="h-[100vh] text-white text-center p-6 bg-orange-100">
@@ -22,12 +28,12 @@ const Pooja = ({ onButtonClick }) => {
       <p className="mt-2 text-black text-1xl md:text-2xl">We provide all types of puja services at your home or nearby locations</p>
 
       <div className="mt-6 md:mt-20 grid grid-cols-3 md:grid-cols-4 gap-6 justify-center">
-        {pujas.map((puja, index) => (
-          <div key={index} className="relative group text-center  ">
+        {Pooja_list.map((puja, index) => (
+          index<8 && <div key={index} className="relative group text-center  ">
             {/* Image Element */}
             <img
-              src={puja.image}
-              alt={puja.name}
+              src={puja.imageUrl}
+              alt={puja.title}
               className="w-16 md:w-32 h-16 md:h-32 mx-auto rounded-full border-2 border-white group-hover:opacity-30 transition-opacity duration-300"
             />
             <p className="mt-2 text-lg text-orange-400 font-semibold group-hover:opacity-0 transition-opacity duration-300">
@@ -45,13 +51,13 @@ const Pooja = ({ onButtonClick }) => {
 
         {/* Hidden for small and medium */}
         <div className="hidden md:block md:col-span-full lg:hidden">
-          {pujas.slice(4, 6).map((puja, index) => (
+          {Pooja_list.slice(4, 6).map((puja, index) => (
             <div key={index} className="relative group text-center mt-2">
 
               {/* Image Section with Hover Effect */}
               <img
-                src={puja.image}
-                alt={puja.name}
+                src={puja.imageUrl}
+                alt={puja.title }
                 className="w-24 h-24 mx-auto rounded-full border-2 border-white group-hover:opacity-0 transition-opacity duration-300"
               />
 

@@ -28,7 +28,7 @@ const Pooja = () => {
     data.append("imageUrl", formData.imageUrl);
 
     try {
-      const response = await fetch("http://localhost:8000/api/users/newpooja", {
+      const response = await fetch("http://localhost:8000/users/newpooja", {
         method: "POST",
         body: data,
       });

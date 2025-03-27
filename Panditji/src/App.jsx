@@ -25,52 +25,53 @@ function App() {
     setIsBookPage(false); // Set the state to true when button is clicked
   };
   return (
-    // <div>
-    //   {isBookPage ? (
-    //     <div >
-    //       <div className='w-screen h-auto overflow-hidden'>
-    //         <Navbar handleall={handleall} />
-    //       </div>
+    <div>
+      {isBookPage ? (
+        <div >
+          <div className='w-screen h-auto overflow-hidden'>
+            <Navbar handleall={handleall} />
+          </div>
 
-    //       <div className='h-[88vh] w-screen'>
-    //         <Routes>
-    //           <Route path="/BookPage" element={<BookPage />} />
-    //           <Route path="/Photo_list" element={<BookPage />} />
-    //           {/* <Route path="/Photo_list" element={<Photo_list />} /> */}
-    //         </Routes>
-    //         <Footer />
-    //       </div>
-    //     </div>
-    //   ) : (
-    //     <div className="w-full h-screen">
-    //       <Navbar handleall={handleall} />
-    //       <div>
-    //         <Routes>
-    //           <Route path="/" element={<Hero />} />
-    //           <Route path="/BookPage" element={<BookPage />} />
-    //           <Route path="/login" element={<Login />} />
-    //         </Routes>
-    //       </div>
+          <div className='h-[88vh] w-screen'>
+            <Routes>
+              <Route path="/BookPage" element={<BookPage />} />
+              <Route path="/Photo_list" element={<BookPage />} />
+              {/* <Route path="/Photo_list" element={<Photo_list />} /> */}
+            </Routes>
+            <Footer />
+          </div>
+        </div>
+      ) : (
+        <div className="w-full h-screen">
+          <Navbar handleall={handleall} />
+          <div>
+            <Routes>
+              <Route path="/" element={<Hero />} />
+              <Route path="/BookPage" element={<BookPage />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+          </div>
 
-    //       <div id="pooja">
-    //         <Pooja onButtonClick={handleBookPageToggle} />
-    //       </div>
-    //       <div id="about">
-    //         <About />
-    //       </div>
-    //       <div id="gallery">
-    //         <Gallery onButtonClick={handleBookPageToggle} />
-    //       </div>
-    //       <div id="contact">
-    //         <Contact />
-    //       </div>
-    //       <Footer />
-    //     </div>
-    //   )}
-    // </div>
-    <div >
-      <AdminDashboard/>
+          <div id="pooja">
+            <Pooja onButtonClick={handleBookPageToggle} />
+          </div>
+          <div id="about">
+            <About />
+          </div>
+          <div id="gallery">
+            <Gallery onButtonClick={handleBookPageToggle} />
+          </div>
+          <div id="contact">
+            <Contact />
+            <AdminDashboard/>
+          </div>
+          <Footer />
+        </div>
+      )}
     </div>
+    // <div >
+    //   <AdminDashboard/>
+    // </div>
   );
 }
 
