@@ -1,8 +1,27 @@
-import React from 'react'
-import Photos from './Photos'
+import {React,useEffect,useState} from 'react'
+// import Photos from './Photos'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 function Gallery({ onButtonClick }) {
   const navigate = useNavigate();
+  const [Photos,setPhotos]=useState([]);
+  ``
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:8000/admin/allphotos');
+          setPhotos(response.data);
+          // console.log("Fetched Pooja List:", response.data);
+        } catch (error) {
+          console.error("Error fetching Gallery image:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
   return (
 
     <div className='h-screen w-full bg-orange-100'>
@@ -13,7 +32,7 @@ function Gallery({ onButtonClick }) {
         <div className="w-[95%] sm:w-[90%] md:w-[80%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4 h-full">
           {Photos.map((photo, index) => (
             <div key={index} className="bg-pink-300 flex items-center justify-center rounded-xl overflow-hidden">
-              <img src={photo.photo} alt="" className="h-full w-full object-cover" />
+              <img src={photo.imageUrl} alt="" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>

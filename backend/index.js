@@ -23,6 +23,7 @@ const galleryRoutes=require("./routes/gallery.js");
 const dashboard = require("./routes/admin/dashboard");
 const userRoutes=require('./routes/users.js')
 const bookingRoutes=require('./routes/booking.js')
+const messageRoutes=require('./routes/admin/message.js')
 
 app.use("/admin", dashboard);
 app.use("/admin", galleryRoutes);
@@ -30,6 +31,7 @@ app.use("/admin", galleryRoutes);
 app.use("/users", poojaRoutes);
 app.use("/users", userRoutes);
 app.use("/users", bookingRoutes);
+app.use('/',messageRoutes)
 
 // Start Server
 const PORT = process.env.PORT || 5000;

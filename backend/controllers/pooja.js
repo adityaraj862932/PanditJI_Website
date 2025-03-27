@@ -10,8 +10,8 @@ const poojalist=async(req,res)=>{
 const newpooja = async(req,res)=>{
     try{
         const {title,Desc,price,Availability}=req.body;
-        console.log("Request Body:", req.body);  // Check text data
-        console.log("Uploaded File:", req.file); // Check file data
+        // console.log("Request Body:", req.body);  // Check text data
+        // console.log("Uploaded File:", req.file); // Check file data
         
         if(!req.file){
             return res.status(400).json({message:"Image required"});

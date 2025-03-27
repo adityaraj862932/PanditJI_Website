@@ -24,8 +24,28 @@ function Pooja() {
     fetchPoojas();
   }, []);
 
-  const handleAddPooja = () => {
+  
+  const handleAddPooja = async (e) => {
+    e.preventDefault();
     navigate("/admin/addPooja");
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("Desc", formData.description);
+    data.append("price", formData.price);
+    data.append("Availability", formData.Availability);
+    data.append("imageUrl", formData.imageUrl);
+
+    try {
+      const response = await fetch("http://localhost:8000/users/newpooja", {
+        method: "POST",
+        body: data,
+      });
+      const result = await response.json();
+      alert(result.message);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to upload.");
+    }
   };
 
   return (
