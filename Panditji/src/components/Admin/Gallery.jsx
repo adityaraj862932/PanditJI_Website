@@ -3,7 +3,7 @@ import axios from "axios";
 import images from "../../components/Photos.json"
 
 const Gallery = () => {
-    // const [images, setImages] = useState([]);
+    const [images, setImages] = useState([]);
 
     // Fetch Images from API
     // useEffect(() => {
