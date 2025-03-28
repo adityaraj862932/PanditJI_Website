@@ -19,18 +19,26 @@ const Auth = () => {
     };
     console.log(formData);
     console.log(role);
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const URL = isRegister ? "http://localhost:8000/users/register" : "http://localhost:8000/users/Userlogin";
         console.log(URL);
-        
+
         console.log({ ...formData, role });
-        
+
         try {
             const response = await axios.post(URL, { ...formData, role });
-            alert(response.data.message);
-            if (!isRegister) navigate("/dashboard");
+            // if (!isRegister) navigate("/dashboard");
+            if (response.status === 200 || response.status === 201) {
+                alert(response.data.message);
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("role", response.data.role);
+                // if(role == "admin"){
+                //     navigate("/admin")
+                // }
+                navigate(role === "admin" ? "/admin" : "/dashboard");
+            }
         } catch (error) {
             alert(error.response?.data?.message || "Something went wrong");
         }
