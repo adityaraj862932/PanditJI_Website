@@ -5,7 +5,8 @@ const messageschema=mongoose.Schema({
     Email:{type:String},
     Number:{type:Number,required:true},
     Message:{type:String,required:true},
+    Date:{type:Date,default:Date.now()}
 })
 
-const message=new mongoose.model('message',messageschema)
-module.exports=message;
+const Messages=new mongoose.model('Messages',messageschema)
+module.exports=Messages;

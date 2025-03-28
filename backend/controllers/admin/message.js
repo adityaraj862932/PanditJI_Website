@@ -1,34 +1,32 @@
-const message=require('../../models/message.js')
+const Message = require('../../models/message.js'); // ✅ Capitalized Model Name
 
-const allmessage=async(req,res)=>{
-    try{
-        const messages=await message.find();
-        res.send(messages)
-
-    }catch(error){
-        res.status(400).json({message:"Server Error",Error:error})
+// Get All Messages
+const allMessages = async (req, res) => {
+    try {
+        const messages = await Message.find();
+        res.status(200).json(messages);
+    } catch (error) {
+        res.status(500).json({ message: "Server Error", error: error.message });
     }
-}
+};
 
-const newmessage=async(req,res)=>{
- try{
-    const{Name,Email,Number,Message}=req.body
+// Create a New Message
+const newMessage = async (req, res) => {
+    try {
+        const { Name, Email, Number, Message: MessageText } = req.body;
 
-    if(!Name | !Number | !Message){
-        console.log(Name,Email,Number,Message);
-        
-        return res.status(400).json({message:"Missing Field"})
+        // ✅ Fixed Logical OR Operator
+        if (!Name || !Number || !MessageText) {
+            return res.status(400).json({ message: "Missing Required Fields" });
+        }
+
+        const createdMessage = new Message({ Name, Email, Number, Message: MessageText });
+        await createdMessage.save();
+
+        res.status(201).json({ message: "Message Sent Successfully!", data: createdMessage });
+    } catch (error) {
+        res.status(500).json({ message: "Server Error!", error: error.message });
     }
+};
 
-    const createdmessage=new message({Name,Email,Number,Message})
-    await createdmessage.save();
-    res.status(201).json({message:"Message Sent Succeffully !"})
-
- }catch(error){
-    res.status(400).json({message:"Server Error !",Error:error})
- }
-}
-
-module.exports={newmessage,allmessage};
-
-
+module.exports = { newMessage, allMessages };
