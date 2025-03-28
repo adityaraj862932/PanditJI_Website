@@ -31,7 +31,8 @@ app.use("/admin", galleryRoutes);
 app.use("/users", poojaRoutes);
 app.use("/users", userRoutes);
 app.use("/users", bookingRoutes);
-app.use('/',messageRoutes)
+app.use("/admin", dashboard);
+app.use('/',messageRoutes);
 
 // Start Server
 const PORT = process.env.PORT || 5000;
