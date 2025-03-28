@@ -11,8 +11,8 @@ function Gallery({ onButtonClick }) {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('http://localhost:8000/gallery');
-          setPooja_list(response.data);
+          const response = await axios.get('http://localhost:8000/admin/allphotos');
+          setPhotos(response.data);
           // console.log("Fetched Pooja List:", response.data);
         } catch (error) {
           console.error("Error fetching Gallery image:", error);

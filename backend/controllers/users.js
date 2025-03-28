@@ -43,8 +43,9 @@ const adminLogin = async (req, res) => {
       sameSite: "strict",
       maxAge: 3600000, // 1 hour
     });
-
-    res.json({ message: "Admin Login Successful" });
+    res.json({ token, role:existingUser.role});
+    // console.log({ token, role:existingUser.role});
+    
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
