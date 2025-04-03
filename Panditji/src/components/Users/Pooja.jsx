@@ -81,7 +81,7 @@ const Pooja = ({ onButtonClick }) => {
       <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto">
 
         <button onClick={() => {
-        navigate('/BookPage');
+        navigate('/Poojalist');
         onButtonClick();
       }}
          className="px-10 py-3 bg-orange-500 mt-14 rounded-full hover:bg-orange-700 "><strong>Explore More</strong></button>

@@ -2,13 +2,23 @@ const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+
+const generateToken=(user)=>{
+  return jwt.sign({id:user._id,role:user.role},process.env.JWT_REFRESH_SECRET,{expiresIn:'15m'})}
+
+const generateRefreshToken=(user)=>{
+  return jwt.sign({id:user._id,role:user.role},process.env.JWT_REFRESH_SECRET,{expiresIn:'7d'})}
+
+
 // Admin Login
 const adminLogin = async (req, res) => {
   try {
-    const { mobile, password, role} = req.body;
+    const { mobile_number, password, role} = req.body;
+   
     
     // Find the admin by mobile number
-    const existingUser = await User.findOne({$and: [{ mobile_number:mobile }, { role }]});
+    const existingUser = await User.findOne({$and: [{ mobile_number }, {role }]});
+    // console.log(existingUser);
     
     if (!existingUser) {
       return res
@@ -25,25 +35,14 @@ const adminLogin = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Generate JWT Token
-    const token = jwt.sign(
-      {
-        id: existingUser._id,
-        mobile_number: existingUser.mobile,
-        role: "admin",
-      },
-      process.env.SECRET,
-      { expiresIn: "1h" }
-    );
+    const accessToken=generateToken(existingUser);
+    const refreshToken=generateRefreshToken(existingUser);
+ 
+    res.cookie("accessToken",accessToken,{httpOnly:true,secure:true,sameSite:"Strict"});
+    res.cookie("refreshToken",refreshToken,{httpOnly:true,secure:true,sameSite:"Strict"});
 
-    // Set Cookie
-    res.cookie("token", token, {
-      httpOnly: true, // Prevents access via JavaScript
-      secure: process.env.NODE_ENV === "production", // Use secure in production
-      sameSite: "strict",
-      maxAge: 3600000, // 1 hour
-    });
-    res.json({ token, role:existingUser.role});
+  
+    res.json({ message:"Login Successful", role:existingUser.role});
     // console.log({ token, role:existingUser.role});
     
   } catch (err) {
@@ -54,14 +53,14 @@ const adminLogin = async (req, res) => {
 // User Login
 const loginUser = async (req, res) => {
   try {
-    const { mobile, password, role } = req.body;
+    const { mobile_number, password, role } = req.body;
     
     if (role === "admin") {
       return await adminLogin(req, res);
     }
 
     // Find user by mobile number
-    const existingUser = await User.findOne({$and: [{ mobile_number:mobile }, { role }]});
+    const existingUser = await User.findOne({$and: [{ mobile_number }, { role }]});
     if (!existingUser) {
       return res
         .status(404)
@@ -77,26 +76,16 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    // Generate JWT Token
-    const token = jwt.sign(
-      {
-        id: existingUser._id,
-        mobile_number: existingUser.mobile,
-        role: "user",
-      },
-      process.env.SECRET,
-      { expiresIn: "1h" }
-    );
+const accessToken=generateToken(existingUser)
+const refreshToken=generateRefreshToken(existingUser)
 
-    // Set Cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 3600000, // 1 hour
-    });
+res.cookie("accessToken",accessToken,{httpOnly:true,secure:true,sameSite:"Strict"});
+res.cookie("refershToken",refreshToken,{httpOnly:true,secure:true,sameSite:"Strict"})
 
-    res.json({ message: "User Login Successful" });
+
+
+
+    res.json({ message: "User Login Successful",role:existingUser.role });
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
@@ -109,10 +98,10 @@ const loginUser = async (req, res) => {
 const userRegister = async (req, res) => {
   
   try {
-    const { mobile,email,name, role, password } = req.body;
+    const { mobile_number,email,name, role, password } = req.body;
     
     // Check if user already exists
-    const existingUser = await User.findOne({ mobile_number:mobile,role });
+    const existingUser = await User.findOne({ mobile_number,role });
     if (existingUser) {
       return res
       .status(400)
@@ -125,7 +114,7 @@ const userRegister = async (req, res) => {
     
     // Create new user
     const newUser = new User({
-      mobile_number:mobile,
+      mobile_number,
       password: hashedPassword,
       email:email,
       name:name, 
@@ -135,23 +124,13 @@ const userRegister = async (req, res) => {
     // Save user to database
     await newUser.save();
     
-    // Generate JWT Token
-    const token = jwt.sign(
-      { id: newUser._id, mobile_number: newUser.mobile, role: "user" },
-      process.env.SECRET,
-      { expiresIn: "1h" }
-    );
-    console.log(token);
+    const accessToken=generateToken(newUser)
+    const refreshToken=generateRefreshToken(newUser)
 
-    // Set Cookie
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      maxAge: 3600000, // 1 hour
-    });
+    res.cookie("accessToken",accessToken,{httpOnly:true,secure:true,sameSite:"Strict"})
+    res.cookie("refreshToken",refreshToken,{httpOnly:true,secure:true,sameSite:"Strict"})
 
-    res.status(201).json({ message: "User registered successfully", token });
+    res.status(201).json({ message: "User registered successfully", });
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }

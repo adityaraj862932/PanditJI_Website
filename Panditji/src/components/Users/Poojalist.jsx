@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 // import { poojalist } from '../../../backend/controllers/pooja';
 
-function BookPage() {
+function Poojalist() {
   const [Pooja_list,setPooja_list]=useState([]);
 
   useEffect(() => {
@@ -54,4 +54,4 @@ function BookPage() {
   )
 }
 
-export default BookPage
+export default Poojalist

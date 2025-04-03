@@ -5,11 +5,17 @@ const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 
 const app = express();
-
+// app.use(cors())
+// app.use(cors({
+//     origin: "http://localhost:5173", // Set the allowed origin
+//     credentials: true, // Allow credentials
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"]
+// }));
 // Middleware
 app.use(express.json());
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5174", credentials: true }));
+// app.use(cors());
 app.use(cookieParser());
 
 // Connect to MongoDB
