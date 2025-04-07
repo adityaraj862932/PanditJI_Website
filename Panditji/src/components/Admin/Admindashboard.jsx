@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard";
 import Gallery from "./Gallery";
 import Pooja from "./Pooja"
 import AddPooja from "./AddPooja";
+import Message from "./Message";
 
 const AdminDashboard = () => {
   return (
@@ -19,6 +20,7 @@ const AdminDashboard = () => {
           <Route path="/admin/gallery" element={<Gallery />} />
           <Route path="/admin/pooja" element={<Pooja />} />
           <Route path="/admin/addPooja" element={<AddPooja />} />
+          <Route path="/admin/Message" element={<Message />} />
         </Routes>
       </div>
     </div>

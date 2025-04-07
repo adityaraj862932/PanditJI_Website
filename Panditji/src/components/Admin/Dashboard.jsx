@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Dashboard = () => {
-  const [total, setTotal] = useState({ totalUsers: 0, totalPoojas: 0, totalBookings: 0, totalContacts: 0 });
+  const [total, setTotal] = useState({ totalUsers: 0, totalPoojas: 0, totalBookings: 0, totalMessage: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +35,8 @@ const Dashboard = () => {
           <p className="text-2xl font-bold">{total.totalBookings}</p>
         </div>
         <div className="bg-red-500 text-white p-6 rounded-lg shadow">
-          <h3 className="text-lg">Contact Queries</h3>
-          <p className="text-2xl font-bold">{total.totalContacts}</p>
+          <h3 className="text-lg">Total Message</h3>
+          <p className="text-2xl font-bold">{total.totalMessage}</p>
         </div>
       </div>
     </div>

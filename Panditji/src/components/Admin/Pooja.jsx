@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Pooja() {
   const navigate = useNavigate();
-  const [poojas, setPoojas] = useState([]); // Store the entire array
+  const [poojas, setPoojas] = useState([]);
 
   useEffect(() => {
     const fetchPoojas = async () => {
@@ -12,8 +12,7 @@ function Pooja() {
         const response = await axios.get("http://localhost:8000/users/poojalist");
 
         if (Array.isArray(response.data)) {
-          console.log("Response data length:", response.data.length);
-          setPoojas(response.data); // Store the full array
+          setPoojas(response.data);
         } else {
           console.error("Unexpected response structure:", response.data);
         }
@@ -24,27 +23,28 @@ function Pooja() {
     fetchPoojas();
   }, []);
 
-  
-  const handleAddPooja = async (e) => {
-    e.preventDefault();
+  const handleAddPooja = () => {
     navigate("/admin/addPooja");
-    const data = new FormData();
-    data.append("title", formData.title);
-    data.append("Desc", formData.description);
-    data.append("price", formData.price);
-    data.append("Availability", formData.Availability);
-    data.append("imageUrl", formData.imageUrl);
+  };
 
-    try {
-      const response = await fetch("http://localhost:8000/users/newpooja", {
-        method: "POST",
-        body: data,
-      });
-      const result = await response.json();
-      alert(result.message);
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Failed to upload.");
+  const handleEdit = (id) => {
+    navigate(`/admin/editPooja/${id}`);
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this pooja?")) {
+      try {
+        const res = await axios.delete(`http://localhost:8000/users/poojalist/${id}`);
+
+        if (res.status === 200) {
+          setPoojas(poojas.filter((pooja) => pooja._id !== id));
+          alert("Pooja deleted successfully");
+        } else {
+          console.error("Failed to delete pooja");
+        }
+      } catch (err) {
+        console.error("Error deleting pooja:", err);
+      }
     }
   };
 
@@ -54,14 +54,14 @@ function Pooja() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {poojas.map((pooja, index) => (
-          <div key={index} className="border rounded-lg shadow-md p-4">
+          <div key={index} className="border rounded-lg shadow-md p-4 relative group bg-gray-900">
             <img
               src={pooja.imageUrl}
               alt={pooja.title}
               className="w-full h-40 object-cover rounded-md"
             />
             <h2 className="text-lg font-semibold mt-2">{pooja.title}</h2>
-            <p className="">{pooja.Desc}</p>
+            <p>{pooja.Desc}</p>
             <p className="text-green-600 font-bold mt-1">₹{pooja.price}</p>
             <p className="text-sm mt-1">
               Availability:{" "}
@@ -69,6 +69,22 @@ function Pooja() {
                 {pooja.Availability ? "Available" : "Not Available"}
               </span>
             </p>
+            
+            {/* Edit & Delete Buttons */}
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition px-2 w-full flex justify-between">
+              <button
+                className="bg-yellow-500 px-3 py-1 rounded-lg text-black hover:bg-yellow-600"
+                onClick={() => handleEdit(pooja._id)}
+              >
+                Edit
+              </button>
+              <button
+                className="bg-red-500 px-3 py-1 rounded-lg text-white hover:bg-red-600"
+                onClick={() => handleDelete(pooja._id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         ))}
       </div>
