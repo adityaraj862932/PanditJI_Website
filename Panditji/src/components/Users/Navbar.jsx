@@ -16,19 +16,19 @@ function Navbar({ handleall }) {
     script.async = true;
     document.body.appendChild(script);
 
-    window.googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: "en",
-          includedLanguages: "hi",
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-        },
-        "google_translate_element"
-      );
-    };
-    return () => {
-      document.body.removeChild(script);
-    };
+  //   window.googleTranslateElementInit = () => {
+  //     new window.google.translate.TranslateElement(
+  //       {
+  //         pageLanguage: "en",
+  //         includedLanguages: "hi",
+  //         layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+  //       },
+  //       "google_translate_element"
+  //     );
+  //   };
+  //   return () => {
+  //     document.body.removeChild(script);
+  //   };
   }, []);
 
   return (
@@ -44,10 +44,10 @@ function Navbar({ handleall }) {
       <div className="hidden md:flex items-center space-x-8">
         {[
           { name: "Home", link: "/" },
-          { name: "Pooja", link: "#pooja" },
-          { name: "About", link: "#about" },
-          { name: "Gallery", link: "#gallery" },
-          { name: "Contact", link: "#contact" },
+          { name: "Pooja", link: "/pooja" },
+          { name: "About", link: "/about" },
+          { name: "Gallery", link: "/gallery" },
+          { name: "Contact", link: "/contact" },
         ].map((item, index) => (
           <a
             key={index}
@@ -83,10 +83,10 @@ function Navbar({ handleall }) {
         <div className="md:hidden absolute top-[12vh] left-0 right-0 bg-slate-100 text-orange-400 flex flex-col items-center py-6 gap-4 text-2xl shadow-md">
           {[
             { name: "Home", link: "/" },
-            { name: "Pooja", link: "#pooja" },
-            { name: "About", link: "#about" },
-            { name: "Gallery", link: "#gallery" },
-            { name: "Contact", link: "#contact" },
+            { name: "Pooja", link: "/pooja" },
+            { name: "About", link: "/about" },
+            { name: "Gallery", link: "/gallery" },
+            { name: "Contact", link: "/contact" },
           ].map((item, index) => (
             <a
               key={index}

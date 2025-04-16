@@ -1,44 +1,51 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { loginsuccess } from "../../redux/authSlice";
+import { useDispatch } from "react-redux";
 
-const Login = () => {
+const Auth = () => {
     const [role, setRole] = useState("user");
     const [isRegister, setIsRegister] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
-        mobile: "",
-        password: ""
+        mobile_number: "",
+        password: "",
+        role: "user"
     });
 
     const navigate = useNavigate();
-
+    const dispatch=useDispatch();
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-    console.log(formData);
-    console.log(role);
+
+    const handleRoleChange = (selectedRole) => {
+        setRole(selectedRole);
+        setFormData({ ...formData, role: selectedRole }); // Update role in formData
+    };
+
+    // console.log(formData);
+    // console.log(role);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const URL = isRegister ? "http://localhost:8000/users/register" : "http://localhost:8000/users/Userlogin";
-        console.log(URL);
-
-        console.log({ ...formData, role });
-
+        const URL = isRegister ? `http://localhost:8000/${role}/register` : `http://localhost:8000/${role}/login`;
+        
+        console.log({ ...formData, role,URL });
+        
         try {
-            const response = await axios.post(URL, { ...formData, role });
-            // if (!isRegister) navigate("/dashboard");
-            if (response.status === 200 || response.status === 201) {
-                alert(response.data.message);
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("role", response.data.role);
-                // if(role == "admin"){
-                //     navigate("/admin")
-                // }
-                navigate(role === "admin" ? "/admin" : "/dashboard");
-            }
+            const {data} = await axios.post(URL, formData,{ withCredentials: true });
+            console.log(data);
+            
+            dispatch(loginsuccess( data ));
+
+            // Redirect Based on Role
+            if (data.role === "admin") navigate("/admin/dashboard")
+            else navigate("/");
+
+            
         } catch (error) {
             alert(error.response?.data?.message || "Something went wrong");
         }
@@ -50,10 +57,10 @@ const Login = () => {
                 <h2 className="text-xl font-semibold mb-4 text-center">{isRegister ? "Register" : "Login"}</h2>
 
                 <div className="flex gap-4 mb-4">
-                    <button className={`flex-1 py-2 rounded-lg text-white ${role === "user" ? "bg-blue-500" : "bg-gray-300"}`} onClick={() => setRole("user")}>
+                    <button className={`flex-1 py-2 rounded-lg text-white ${role === "user" ? "bg-blue-500" : "bg-gray-300"}`} onClick={() => handleRoleChange("user")}>
                         User
                     </button>
-                    <button className={`flex-1 py-2 rounded-lg text-white ${role === "admin" ? "bg-blue-500" : "bg-gray-300"}`} onClick={() => setRole("admin")}>
+                    <button className={`flex-1 py-2 rounded-lg text-white ${role === "admin" ? "bg-blue-500" : "bg-gray-300"}`} onClick={() => handleRoleChange("admin")}>
                         Admin
                     </button>
                 </div>
@@ -65,7 +72,7 @@ const Login = () => {
                     {isRegister && (
                         <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" required />
                     )}
-                    <input type="text" name="mobile" placeholder="Mobile Number" value={formData.mobile} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" required={!isRegister} />
+                    <input type="text" name="mobile_number" placeholder="Mobile Number" value={formData.mobile} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" required={!isRegister} />
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} className="w-full p-2 border border-gray-300 rounded" required />
 
                     <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
@@ -83,4 +90,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Auth;
