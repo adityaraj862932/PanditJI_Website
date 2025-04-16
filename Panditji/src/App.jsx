@@ -11,10 +11,12 @@ import Poojalist from './components/Users/Poojalist';
 import Gallery from './components/Users/Gallery';
 import Login from './components/Users/Login';
 import Home from './components/Users/Home';
+import Signup from './components/Users/Signup';
 
 import Admindashboard from './components/Admin/Admindashboard'
 import ProtectedRoute from './components/ProtectedRoute';
-// import {useDispatch} from  'react-redux';
+import {useDispatch} from  'react-redux';
+import Dashboard from './components/Admin/Dashboard';
 
 function App() {
 
@@ -45,9 +47,13 @@ function App() {
         <Route path="/Footer" element={<Footer />} />
         <Route path="/Poojalist" element={<Poojalist />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
 
 
-        <Route path="/admin/dashboard" element={<Admindashboard />}/>
+        <Route path="/*" element={<ProtectedRoute><Admindashboard /></ProtectedRoute>}/>
+        {/* <Route path="/admin/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} /> */}
+        
+       
 
 
 

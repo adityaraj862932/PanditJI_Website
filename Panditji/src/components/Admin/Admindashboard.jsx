@@ -1,19 +1,16 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
 import Gallery from "./Gallery";
-import Pooja from "./Pooja"
+import Pooja from "./Pooja";
 import AddPooja from "./AddPooja";
 import Message from "./Message";
 
 const AdminDashboard = () => {
   return (
-    <div className="flex bg-gray-700">
-      {/* Sidebar */}
+    <div className="flex bg-gray-700 min-h-screen">
       <Sidebar />
-
-      {/* Main Content */}
       <div className="flex-1 p-6">
         <Routes>
           <Route path="/admin/dashboard" element={<Dashboard />} />

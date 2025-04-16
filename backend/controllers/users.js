@@ -59,7 +59,10 @@ const adminLogin = async (req, res) => {
       sameSite: "Strict",
     });
 
-    res.json({ message: "Login Successful", role: existingUser.role });
+  
+    res.json({ message:"Login Successful", role:existingUser.role,accessToken:accessToken});
+    // console.log({ token, role:existingUser.role});
+    
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
@@ -100,12 +103,12 @@ const loginUser = async (req, res) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: true,
-      sameSite: "Lax",
+      sameSite: "strict",
     });
     res.cookie("refershToken", refreshToken, {
       httpOnly: true,
       secure: true,
-      sameSite: "Lax",
+      sameSite: "strict",
     });
 
     res.json({ message: "User Login Successful", role: existingUser.role,accessToken:accessToken });
