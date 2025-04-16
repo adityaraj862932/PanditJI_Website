@@ -42,7 +42,7 @@ const adminLogin = async (req, res) => {
     res.cookie("refreshToken",refreshToken,{httpOnly:true,secure:true,sameSite:"Strict"});
 
   
-    res.json({ message:"Login Successful", role:existingUser.role});
+    res.json({ message:"Login Successful", role:existingUser.role,accessToken:accessToken});
     // console.log({ token, role:existingUser.role});
     
   } catch (err) {
