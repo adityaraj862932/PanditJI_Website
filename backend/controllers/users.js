@@ -59,10 +59,12 @@ const adminLogin = async (req, res) => {
       sameSite: "Strict",
     });
 
-  
-    res.json({ message:"Login Successful", role:existingUser.role,accessToken:accessToken});
+    res.json({
+      message: "Login Successful",
+      role: existingUser.role,
+      accessToken: accessToken,
+    });
     // console.log({ token, role:existingUser.role});
-    
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
@@ -111,7 +113,11 @@ const loginUser = async (req, res) => {
       sameSite: "strict",
     });
 
-    res.json({ message: "User Login Successful", role: existingUser.role,accessToken:accessToken });
+    res.json({
+      message: "User Login Successful",
+      role: existingUser.role,
+      accessToken: accessToken,
+    });
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }
@@ -120,19 +126,20 @@ const loginUser = async (req, res) => {
 const userRegister = async (req, res) => {
   try {
     const { mobile_number, email, name, role, password } = req.body;
-
+    
     // Check if user already exists
     const existingUser = await User.findOne({ mobile_number, role });
     if (existingUser) {
       return res
-        .status(400)
-        .json({ message: "User already exists. Please log in." });
+      .status(400)
+      .json({ message: "User already exists. Please log in." });
     }
-
+    
     // Hash the password
     const salt = await bcrypt.genSalt(8);
     const hashedPassword = await bcrypt.hash(password, salt);
-
+    
+    // console.log(existingUser);
     // Create new user
     const newUser = new User({
       mobile_number,
@@ -141,7 +148,7 @@ const userRegister = async (req, res) => {
       name: name,
       role: role,
     });
-
+    
     // Save user to database
     await newUser.save();
 
