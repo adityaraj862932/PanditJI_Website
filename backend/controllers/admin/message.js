@@ -13,14 +13,14 @@ const allMessages = async (req, res) => {
 // Create a New Message
 const newMessage = async (req, res) => {
     try {
-        const { Name, Email, Number, Message: MessageText } = req.body;
+        const { Name, Email, Number, Message: MessageText,Date } = req.body;
 
         // ✅ Fixed Logical OR Operator
         if (!Name || !Number || !MessageText) {
             return res.status(400).json({ message: "Missing Required Fields" });
         }
 
-        const createdMessage = new Message({ Name, Email, Number, Message: MessageText });
+        const createdMessage = new Message({ Name, Email, Number, Message: MessageText,Date });
         await createdMessage.save();
 
         res.status(201).json({ message: "Message Sent Successfully!", data: createdMessage });

@@ -4,13 +4,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginsuccess } from "../../redux/authSlice";
 
-const Signup = ({ toggleForm }) => {
+const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     mobile_number: "",
     password: "",
-    role: "user",
+    role: "",
   });
 
   const navigate = useNavigate();
@@ -32,9 +32,9 @@ const Signup = ({ toggleForm }) => {
         formData,
         { withCredentials: true }
       );
+      alert(data.message)
+      navigate("/")
       dispatch(loginsuccess(data));
-      if (data.role === "admin") navigate("/admin/dashboard");
-      else navigate("/");
     } catch (error) {
       alert(error.response?.data?.message || "Registration failed");
     }
@@ -54,14 +54,14 @@ const Signup = ({ toggleForm }) => {
           >
             User
           </button>
-          {/* <button
+          <button
             className={`flex-1 py-2 rounded-lg text-white ${
               formData.role === "admin" ? "bg-blue-500" : "bg-gray-300"
             }`}
             onClick={() => handleRoleChange("admin")}
           >
             Admin
-          </button> */}
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -109,15 +109,20 @@ const Signup = ({ toggleForm }) => {
           </button>
         </form>
 
-        <p
-          className="text-blue-500 text-center mt-4 cursor-pointer"
-          onClick={toggleForm}
-        >
-          Already have an account? Login
+        <p className="text-blue-500 text-center mt-4 cursor-pointer">
+          Already have an account?{" "}
+          <span>
+            <button
+              onClick={() => navigate("/login")}  
+              className="text-blue-500 underline"
+            >
+              Login
+            </button>
+          </span>
         </p>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default Signup;

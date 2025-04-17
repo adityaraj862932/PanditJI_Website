@@ -11,6 +11,7 @@ const authSlice=createSlice({
         logout:(state)=>{
             state.role=null,
             state.accessToken=null
+            
         },
     },
 });

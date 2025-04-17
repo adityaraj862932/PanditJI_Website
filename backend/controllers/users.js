@@ -85,7 +85,7 @@ res.cookie("refershToken",refreshToken,{httpOnly:true,secure:true,sameSite:"Stri
 
 
 
-    res.json({ message: "User Login Successful",role:existingUser.role });
+    res.json({ message: "User Login Successful",role:existingUser.role, accessToken:accessToken });
   } catch (err) {
     res.status(500).json({ message: "Server Error", error: err.message });
   }

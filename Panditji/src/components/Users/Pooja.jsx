@@ -13,7 +13,6 @@ const Pooja = ({ onButtonClick }) => {
         try {
           const response = await axios.get('http://localhost:8000/users/poojalist');
           setPooja_list(response.data);
-          console.log("Fetched Pooja List:", response.data);
         } catch (error) {
           console.error("Error fetching pooja list:", error);
         }
@@ -37,7 +36,7 @@ const Pooja = ({ onButtonClick }) => {
               className="w-16 md:w-32 h-16 md:h-32 mx-auto rounded-full border-2 border-white group-hover:opacity-30 transition-opacity duration-300"
             />
             <p className="mt-2 text-lg text-orange-400 font-semibold group-hover:opacity-0 transition-opacity duration-300">
-              {puja.name}
+              {puja.title}
             </p>
 
             {/* "Book Now" Button Appears on Hover */}

@@ -2,34 +2,19 @@ import React, { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../redux/authSlice";
 
-function Navbar({ handleall }) {
+function Navbar() {
   const navigate = useNavigate();
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const accessToken  = useSelector((state) => state.auth.accessToken);
+  const role  = useSelector((state) => state.auth.role);
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    script.async = true;
-    document.body.appendChild(script);
-
-  //   window.googleTranslateElementInit = () => {
-  //     new window.google.translate.TranslateElement(
-  //       {
-  //         pageLanguage: "en",
-  //         includedLanguages: "hi",
-  //         layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-  //       },
-  //       "google_translate_element"
-  //     );
-  //   };
-  //   return () => {
-  //     document.body.removeChild(script);
-  //   };
-  }, []);
+  const dispatch = useDispatch();
+  console.log({"role":role,"accssToken":accessToken})
 
   return (
     <div className="w-full h-[12vh] bg-orange-400 text-white flex items-center justify-between px-6 md:px-12">
@@ -60,12 +45,23 @@ function Navbar({ handleall }) {
       </div>
 
       {/* Login Button */}
-      <button
-        onClick={() => navigate("/login")}
-        className="hidden md:block bg-white text-orange-500 px-6 py-2 rounded-full font-bold hover:bg-gray-100 transition-all"
-      >
-        Login
-      </button>
+      
+          {!role || !accessToken ? (
+            
+            <><button
+              onClick={() => navigate("/login")}
+              className="h-[50%] w-20 bg-orange-500 text-white p-2 rounded-md hover:bg-orange-600"
+            >
+              Login
+            </button></>
+          ) :(<>
+            <button
+              onClick={() => dispatch(logout({role:null,accessToken:null}))}
+              className="h-[50%] w-20 bg-orange-500 text-white p-2 rounded-md hover:bg-orange-600"
+            >
+              Logout
+            </button>
+            </>)}
 
       {/* Mobile Menu Icon */}
       <div className="md:hidden flex items-center">
@@ -88,21 +84,27 @@ function Navbar({ handleall }) {
             { name: "Gallery", link: "/gallery" },
             { name: "Contact", link: "/contact" },
           ].map((item, index) => (
-            <a
-              key={index}
-              href={item.link}
-              className="hover:text-gray-600"
-            >
+            <a key={index} href={item.link} className="hover:text-gray-600">
               {item.name}
             </a>
           ))}
-
-          <button
-            onClick={() => navigate("/login")}
-            className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
-          >
-            Login
-          </button>
+          {/* { console.log({"role":role,"accssToken":accessToken})} */}
+          {!role || !accessToken  ? (
+            
+            <><button
+              onClick={() => navigate("/login")}
+              className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+            >
+              Login
+            </button></>
+          ) :(<>
+            <button
+              onClick={() => dispatch(logout({role:null,accessToken:null}))}
+              className="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600"
+            >
+              Logout
+            </button>
+            </>)}
         </div>
       )}
     </div>
