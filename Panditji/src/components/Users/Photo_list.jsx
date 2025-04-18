@@ -4,7 +4,7 @@ import React from 'react'
 function Photo_list() {
 
   return (
-    <div className='flex items-center bg-black h-screen w-full'>
+    <div className='flex items-center h-screen w-full'>
       gallery
     </div>
   )

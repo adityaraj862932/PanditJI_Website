@@ -9,7 +9,7 @@ const PoojaSchema = mongoose.Schema({
         type:String,
         required:true,
     },
-    price:String,
+    price:Number,
     Desc:{
         type:String,
         required: true,

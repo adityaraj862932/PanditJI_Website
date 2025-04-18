@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-function Gallery({ onButtonClick }) {
+function Gallery() {
   const navigate = useNavigate();
   const [Photos,setPhotos]=useState([]);
   ``
@@ -43,8 +43,7 @@ function Gallery({ onButtonClick }) {
         {/* <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto"> */}
 
         <button onClick={() => {
-          navigate('/Photo_list');
-          onButtonClick();
+          navigate('/allphotos');
         }}
           className="px-10 py-3 bg-orange-500 mt-14 rounded-full hover:bg-orange-700 text-white"><strong>Explore More</strong></button>
         {/* </div> */}

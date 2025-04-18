@@ -17,6 +17,8 @@ import Signup from "./components/Users/Signup";
 // Admin Components
 import Admindashboard from "./components/Admin/Admindashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Booking from "./components/Users/Booking";
+import Photo_list from "./components/Users/Photo_list"
 
 function App() {
   const role = useSelector((state) => state.auth.role);
@@ -31,10 +33,12 @@ function App() {
             <Route path="/Pooja" element={<Pooja />} />
             <Route path="/About" element={<About />} />
             <Route path="/Gallery" element={<Gallery />} />
+            <Route path="/allphotos" element={<Photo_list />} />
             <Route path="/Contact" element={<Contact />} />
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Poojalist" element={<Poojalist />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/pooja/booking/:id" element = {<Booking />} />
             <Route path="*" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
           </Routes>
