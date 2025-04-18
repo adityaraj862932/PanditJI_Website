@@ -21,9 +21,9 @@ const Sidebar = () => {
         <li>
           <Link to="/admin/message" className="block p-2 hover:bg-gray-700 rounded">Messages</Link>
         </li>
-        {/* <li>
-          <Link to="/admin/users" className="block p-2 hover:bg-gray-700 rounded">Manage Users</Link>
-        </li> */}
+        <li>
+          <Link to="/admin/Booking" className="block p-2 hover:bg-gray-700 rounded">Booking</Link>
+        </li>
         <li>
           <button onClick={() => dispatch(logout())}
           className="w-full p-2 bg-red-500 hover:bg-red-600 rounded mt-4">Logout</button>

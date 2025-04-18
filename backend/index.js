@@ -25,6 +25,7 @@ const messageRoutes=require('./routes/admin/message.js')
 app.use("/admin", dashboard);
 app.use("/admin", galleryRoutes);
 app.use("/user", bookingRoutes);
+app.use("/admin", bookingRoutes);
 app.use("/users", poojaRoutes);
 app.use("/users", userRoutes);
 app.use("/admin", dashboard);

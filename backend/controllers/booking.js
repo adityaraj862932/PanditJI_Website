@@ -1,4 +1,5 @@
 const Booking = require("../models/booking");
+const Pooja=require("../models/pooja")
 
 const newBooking = async (req, res) => {
     try {const {
@@ -45,4 +46,19 @@ console.log({
     }
 };
 
-module.exports = newBooking;
+const booking = async (req, res) =>{
+    try {
+        const response = await Booking.find();
+        res.status(200).send(response);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+const bookingbyid=async(req,res)=>{
+    const id=req.params.id;
+    const response=await Pooja.findById(id)
+    res.status(200).send(response)
+}
+
+module.exports = {newBooking,booking,bookingbyid};

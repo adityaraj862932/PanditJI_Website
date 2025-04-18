@@ -19,6 +19,7 @@ import Admindashboard from "./components/Admin/Admindashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Booking from "./components/Users/Booking";
 import Photo_list from "./components/Users/Photo_list"
+// import Booking from "./components/Users/Booking";
 
 function App() {
   const role = useSelector((state) => state.auth.role);
