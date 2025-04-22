@@ -20,8 +20,7 @@ function Photo_list() {
   return (
     <div className="flex  h-screen w-full">
       {photos.map((photo, index) => (
-       (index<6) 
-       && <div key={index} className="h-1/3 w-1/3 flex justify-between">
+        <div key={index} className="h-1/3 w-1/3 flex">
           <img src={photo.imageUrl} alt="" />
         </div>
       ))}

@@ -31,7 +31,8 @@ function Gallery() {
       <div className='h-[70%] w-full flex justify-center'>
         <div className="w-[95%] sm:w-[90%] md:w-[80%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4 h-full">
           {Photos.map((photo, index) => (
-            <div key={index} className="bg-pink-300 flex items-center justify-center rounded-xl overflow-hidden">
+           (index<6) 
+           && <div key={index} className="bg-pink-300 flex items-center justify-center rounded-xl overflow-hidden">
               <img src={photo.imageUrl} alt="" className="h-full w-full object-cover" />
             </div>
           ))}
