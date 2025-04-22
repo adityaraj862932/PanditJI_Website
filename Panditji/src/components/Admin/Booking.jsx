@@ -45,7 +45,7 @@ function Booking() {
             >
               {pooja ? (
                 <>
-                  <h3 className="text-xl font-semibold text-blue-600 mb-2">{pooja.title}</h3>
+                  <h3 className="text-xl font-semibold text-blue-600 mb-2">Pooja Name: {pooja.title}</h3>
                   <p className="text-gray-600 mb-1">
                     <span className="font-medium">Price:</span> ₹{pooja.price}
                   </p>
@@ -57,7 +57,7 @@ function Booking() {
                 <p>Loading pooja details...</p>
               )}
 
-              <h3 className="text-xl font-semibold text-green-700 mt-4 mb-2">{item.name}</h3>
+              <h3 className="text-xl font-semibold text-green-700 mt-4 mb-2">Customer Name: {item.name}</h3>
               <p className="text-gray-600 mb-1">
                 <span className="font-medium">Phone:</span> {item.number}
               </p>
