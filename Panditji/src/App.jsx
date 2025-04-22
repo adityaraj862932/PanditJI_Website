@@ -39,7 +39,7 @@ function App() {
             <Route path="/Footer" element={<Footer />} />
             <Route path="/Poojalist" element={<Poojalist />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/pooja/booking/:id" element = {<Booking />} />
+            {role == "user" ? (<Route path="/pooja/booking/:id" element = {<Booking />} /> ):(<Route path="*" element={<Login />} />)}
             <Route path="*" element={<Login />} />
             <Route path="/Signup" element={<Signup />} />
           </Routes>
