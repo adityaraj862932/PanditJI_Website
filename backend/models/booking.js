@@ -4,7 +4,7 @@ const bookingSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'user', // Reference to User model
+            ref: 'User', // Reference to User model
             required: true
         },
         pooja: {
@@ -12,21 +12,31 @@ const bookingSchema = new mongoose.Schema(
             ref: 'Pooja', // Reference to Puja model
             required: true
         },
+        name:{
+            type:String,
+            required:true
+        },
+        number:Number,
         address: {
-            street: { type: String, required: true, trim: true },
-            landmark: { type: String, required: false, trim: true },
-            city: { type: String, required: true, trim: true },
-            state: { type: String, required: true, trim: true }
+            type:String, 
+            required:true
+            // street: { type: String, required: true, trim: true },
+            // landmark: { type: String, required: false, trim: true },
+            // city: { type: String, required: true, trim: true },
+            // state: { type: String, required: true, trim: true }
         },
         date: {
             type: Date,
             required: true
         },
-        status: {
-            type: String,
-            enum: ["pending", "confirmed", "cancelled"],
-            default: "pending"
+        note:{
+            type:String,
         }
+        // status: {
+        //     type: String,
+        //     enum: ["pending", "confirmed", "cancelled"],
+        //     default: "pending"
+        // }
     },
     {
         timestamps: true // Adds createdAt and updatedAt fields

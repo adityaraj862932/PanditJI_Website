@@ -41,7 +41,7 @@ const Gallery = () => {
       }
     };
     fetchImages();
-  }, []);
+  }, [images]);
 
   // Handle delete image
   const handleDelete = async (id) => {

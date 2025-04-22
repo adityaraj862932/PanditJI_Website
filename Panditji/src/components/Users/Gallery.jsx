@@ -43,7 +43,9 @@ function Gallery() {
       <div className='h-[15%] w-full flex justify-center items-center'>
         {/* <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto"> */}
 
-        <button onClick={() => window.open("/allphotos", "_blank")}
+        <button onClick={() => {
+          navigate('/allphotos');
+        }}
           className="px-10 py-3 bg-orange-500 mt-14 rounded-full hover:bg-orange-700 text-white"><strong>Explore More</strong></button>
         {/* </div> */}
       </div>

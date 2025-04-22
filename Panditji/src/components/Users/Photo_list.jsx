@@ -18,12 +18,8 @@ function Photo_list() {
   }, []);
 
   return (
-    <div className="flex  h-screen w-full">
-      {photos.map((photo, index) => (
-        <div key={index} className="h-1/3 w-1/3 flex">
-          <img src={photo.imageUrl} alt="" />
-        </div>
-      ))}
+    <div className='flex items-center h-screen w-full'>
+      gallery
     </div>
   );
 }
