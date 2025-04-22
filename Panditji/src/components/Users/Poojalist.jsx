@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 // import Pooja_list from './Pooja_list'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 // import { poojalist } from '../../../backend/controllers/pooja';
 
 function Poojalist() {
   const [Pooja_list,setPooja_list]=useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -44,7 +45,9 @@ function Poojalist() {
                 <div className='h-full w-[60%]'>{puja.Availability}</div>
               </div>
               <div className='h-[20%] w-full flex items-center justify-center'>
-                <button className='p-2 rounded-lg flex items-center justify-center bg-slate-200 text-black  hover:bg-green-500 hover:text-cyan-50 '><strong>Book Now</strong></button>
+                <button className='p-2 rounded-lg flex items-center justify-center bg-slate-200 text-black  hover:bg-green-500 hover:text-cyan-50 '
+                onClick={() => navigate(`/pooja/booking/${puja._id}`)}
+                ><strong>Book Now</strong></button>
               </div>
             </div>
           </div>
