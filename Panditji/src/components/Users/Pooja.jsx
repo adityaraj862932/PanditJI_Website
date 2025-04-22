@@ -69,6 +69,7 @@ const Pooja = ({ onButtonClick }) => {
               {/* Book Now Button Appears on Hover */}
               <button
                 className="absolute inset-0 flex items-center justify-center bg-orange-500 bg-opacity-90 text-white font-bold py-2 px-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 "
+                onClick={() => navigate(`/pooja/booking/${puja._id}`)}
               >
                 Book Now
               </button>
