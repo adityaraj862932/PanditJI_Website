@@ -13,7 +13,6 @@ const Pooja = ({ onButtonClick }) => {
         try {
           const response = await axios.get('http://localhost:8000/users/poojalist');
           setPooja_list(response.data);
-          console.log("Fetched Pooja List:", response.data);
         } catch (error) {
           console.error("Error fetching pooja list:", error);
         }
@@ -37,12 +36,13 @@ const Pooja = ({ onButtonClick }) => {
               className="w-16 md:w-32 h-16 md:h-32 mx-auto rounded-full border-2 border-white group-hover:opacity-30 transition-opacity duration-300"
             />
             <p className="mt-2 text-lg text-orange-400 font-semibold group-hover:opacity-0 transition-opacity duration-300">
-              {puja.name}
+              {puja.title}
             </p>
 
             {/* "Book Now" Button Appears on Hover */}
             <button
               className="absolute bottom-[30%] left-1/2 transform -translate-x-1/2 mb-4  bg-opacity-100 text-white font-bold py-2 px-6 rounded-full bg-orange-400 opacity-0 group-hover:opacity-100 transition-opacity"
+              onClick={() => navigate(`/pooja/booking/${puja._id}`)}
             >
               Book Now
             </button>
@@ -69,6 +69,7 @@ const Pooja = ({ onButtonClick }) => {
               {/* Book Now Button Appears on Hover */}
               <button
                 className="absolute inset-0 flex items-center justify-center bg-orange-500 bg-opacity-90 text-white font-bold py-2 px-6 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 "
+                onClick={() => navigate(`/pooja/booking/${puja._id}`)}
               >
                 Book Now
               </button>
@@ -81,7 +82,7 @@ const Pooja = ({ onButtonClick }) => {
       <div className="w-[80vw] h-0.5 bg-orange-400 mt-5 mx-auto">
 
         <button onClick={() => {
-        navigate('/BookPage');
+        navigate('/Poojalist');
         onButtonClick();
       }}
          className="px-10 py-3 bg-orange-500 mt-14 rounded-full hover:bg-orange-700 "><strong>Explore More</strong></button>

@@ -1,18 +1,16 @@
+import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children, role }) => {
-    const token = localStorage.getItem("token");
-    const userRole = localStorage.getItem("role");
+const ProtectedRoute = ({children }) => {
+  const getrole = useSelector((state) => state.auth);
+  console.log(getrole.role);
+  
 
-    if (!token) {
-        return <Navigate to="/admin" />;
-    }
+  if (!getrole) return <Navigate to="/login" />;  // Redirect to login if not logged in
 
-    if (userRole !== role) {
-        return <Navigate to="/dashboard" />;
-    }
+  if (getrole.role !== 'admin') return <Navigate to="/login" />;  // Redirect if role doesn't match
 
-    return children;
+  return children;
 };
 
 export default ProtectedRoute;

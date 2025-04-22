@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { logout } from "../../redux/authSlice";
+import { useDispatch } from "react-redux";
+
 
 const Sidebar = () => {
+  const dispatch = useDispatch()
   return (
     <div className="w-64 min-h-screen bg-gray-800 text-white p-4">
       <h2 className="text-2xl font-bold mb-6">Admin Panel</h2>
@@ -18,10 +22,11 @@ const Sidebar = () => {
           <Link to="/admin/message" className="block p-2 hover:bg-gray-700 rounded">Messages</Link>
         </li>
         <li>
-          <Link to="/admin/users" className="block p-2 hover:bg-gray-700 rounded">Manage Users</Link>
+          <Link to="/admin/Booking" className="block p-2 hover:bg-gray-700 rounded">Booking</Link>
         </li>
         <li>
-          <button className="w-full p-2 bg-red-500 hover:bg-red-600 rounded mt-4">Logout</button>
+          <button onClick={() => dispatch(logout())}
+          className="w-full p-2 bg-red-500 hover:bg-red-600 rounded mt-4">Logout</button>
         </li>
       </ul>
     </div>

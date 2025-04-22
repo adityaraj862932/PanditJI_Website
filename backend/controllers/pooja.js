@@ -7,12 +7,19 @@ const poojalist=async(req,res)=>{
 
 }; 
 
+// for After click on booknow pooja to find in database
+const findpooja = async(req, res) =>{
+    const id = req.params.id;
+    
+    const found = await Pooja.findById(id);
+    res.status(200).json(found);
+};
+
+// For add a new Pooja
 const newpooja = async(req,res)=>{
     try{
         const {title,Desc,price,Availability}=req.body;
-        // console.log("Request Body:", req.body);  // Check text data
-        // console.log("Uploaded File:", req.file); // Check file data
-        
+
         if(!req.file){
             return res.status(400).json({message:"Image required"});
         }
@@ -59,4 +66,4 @@ const deletepooja=async(req,res)=>{
 
 }
 
-module.exports={poojalist,newpooja,deletepooja};
+module.exports={poojalist,newpooja,deletepooja,findpooja};

@@ -4,11 +4,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { loginsuccess } from "../../redux/authSlice";
 
-const Login = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
     mobile_number: "",
     password: "",
-    role: "user",
+    role: "",
   });
 
   const navigate = useNavigate();
@@ -26,22 +28,22 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:8000/users/Userlogin",
+        "http://localhost:8000/users/register",
         formData,
         { withCredentials: true }
       );
+      alert(data.message)
+      navigate("/")
       dispatch(loginsuccess(data));
-      if (data.role === "admin") navigate("/admin/dashboard");
-      else navigate("/");
     } catch (error) {
-      alert(error.response?.data?.message || "Login failed");
+      alert(error.response?.data?.message || "Registration failed");
     }
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h2 className="text-xl font-semibold mb-4 text-center">Login</h2>
+        <h2 className="text-xl font-semibold mb-4 text-center">Register</h2>
 
         <div className="flex gap-4 mb-4">
           <button
@@ -65,6 +67,24 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
+            name="name"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded"
+            required
+          />
+          <input
+            type="text"
             name="mobile_number"
             placeholder="Mobile Number"
             value={formData.mobile_number}
@@ -85,21 +105,18 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
           >
-            Login
+            Register
           </button>
         </form>
 
-        <p
-          className="text-blue-500 text-center mt-4 cursor-pointer"
-          
-        >
-          Don't have an account?{" "}
+        <p className="text-blue-500 text-center mt-4 cursor-pointer">
+          Already have an account?{" "}
           <span>
             <button
-              onClick={() => navigate("/Signup")} // Corrected the navigation here
+              onClick={() => navigate("/login")}  
               className="text-blue-500 underline"
             >
-              Register
+              Login
             </button>
           </span>
         </p>
@@ -108,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

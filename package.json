@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
+    "server": "cd backend && node index.js",
+    "dev": "cd Panditji && npm run dev"
+  },
+  "dependencies": {
+    "jwt-decode": "^4.0.0"
+  }
+}

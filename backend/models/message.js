@@ -5,7 +5,7 @@ const messageschema=mongoose.Schema({
     Email:{type:String},
     Number:{type:Number,required:true},
     Message:{type:String,required:true},
-    Date:{type:Date,default:Date.now()}
+    Date:{type:Date}
 })
 
 const Messages=new mongoose.model('Messages',messageschema)
